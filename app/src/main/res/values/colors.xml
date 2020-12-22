@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2EA2DF</color>
+    <color name="colorPrimaryDark">#2EA2DF</color>
+    <color name="colorAccent">#2EA2DF</color>
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="face_book_btn">#1F57E3</color>
+    <color name="twitter_btn">#FF00C3FF</color>
+    <color name="bg">#123456</color>
+</resources>

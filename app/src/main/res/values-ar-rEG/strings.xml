@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">أجهزتك</string>
+    <string name="communicate">تواصل معنا</string>
+    <string name="menu_home" translatable="true">صفحة البداية</string>
+    <string name="action_settings" translatable="true">الأعدادات</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="email">الايميل</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="waiting">قائمة الأنتظار</string>
+    <string name="car">العربة</string>
+    <string name="solded">تم شراؤه</string>
+    <string name="register">تسجيل جديد</string>
+    <string name="log_in">تسجيل دخول</string>
+    <string name="skip">تخطى</string>
+    <string name="sign_up_message">سجل حسابك لدينا حتى تستطيع الوصول الى كافة مميزات التطبيق وحفظ المشتريات فى حسابك.</string>
+    <string name="name_hint">قم بأدخال اسمك</string>
+    <string name="email_hint">"قم بأدخال بريدك الالكترونى "</string>
+    <string name="password_hint">كلمة المرور</string>
+    <string name="password">كلمة المرور</string>
+    <string name="log_in_message">قم بتسجيل دخول الى حسابك بواسطة حساب فيس بوك او تويتر او بواسطة بريدك الالكترونى.</string>
+    <string name="log_out">تسجيل خروج</string>
+    <string name="liked">قائمة الاعجابات</string>
+    <string name="language">اللغة</string>
+    <string name="rate">اضف تقييمك فى متجر التطبيقات</string>
+    <string name="verification">ادخل رمز التأكيد</string>
+    <string name="supermarket">سوبر ماركت</string>
+    <string name="phones">موبالات واجهزة لوحية</string>
+    <string name="electrical">أجهزة كهربية</string>
+    <string name="kitchen">ادوات المطبخ</string>
+    <string name="cleaners">"النظافة "</string>
+    <string name="clothes">الملابس والاحذية</string>
+    <string name="health">الصحة والجمال</string>
+    <string name="toys">العاب</string>
+    <string name="quantity">الكمية</string>
+    <string name="seller">اسم البائع</string>
+    <string name="buy">اشترى</string>
+    <string name="address">العنوان</string>
+    <string name="address_hint">ادخل العنوان</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="complete">اكمل التسجيل</string>
+</resources>

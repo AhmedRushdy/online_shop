@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.yourdevices.ui.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_waiting" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_solded"
+            app:destination="@id/nav_solded" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_car"
+            app:destination="@id/nav_car" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_waiting"
+        android:name="com.example.yourdevices.ui.WaitingFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_wait">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_home" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_nav_waiting_to_nav_solded"
+            app:destination="@id/nav_solded" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_car"
+        android:name="com.example.yourdevices.ui.CarFragment"
+        android:label="@string/car"
+        tools:layout="@layout/fragment_car" >
+    <action
+        android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+        app:destination="@id/nav_waiting" />
+        <action
+            android:id="@+id/action_nav_car_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>>
+    <fragment
+        android:id="@+id/nav_solded"
+        android:name="com.example.yourdevices.ui.SoldedFragment"
+        android:label="@string/solded"
+        tools:layout="@layout/fragment_solded" >
+        <action
+            android:id="@+id/action_nav_solded_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_solded_to_nav_waiting"
+            app:destination="@id/nav_waiting" />
+    </fragment>
+
+</navigation>

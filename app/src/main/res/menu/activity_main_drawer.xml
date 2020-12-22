@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_waiting"
+            android:icon="@drawable/waiting"
+            android:title="@string/waiting" />
+        <item
+            android:id="@+id/nav_car"
+            android:icon="@drawable/car"
+            android:title="@string/car" />
+        <item android:id="@+id/nav_solded"
+            android:icon="@drawable/solded"
+            android:title="@string/solded"
+            />
+    </group>
+
+    <item android:title="@string/communicate"
+        >
+        <menu>
+            <item
+                android:icon="@drawable/ic_gmail"
+                android:title="Gmail"
+                android:id="@+id/gmail"
+                ></item>
+        </menu>
+    </item>
+</menu>
