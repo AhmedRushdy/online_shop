@@ -66,7 +66,6 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
     LoginButton facebook;
     Button google;
     private GoogleSignInClient mGoogleSignInClient;
-    private DatabaseReference mDatabase;
 
 
     private final static int RC_SIGN_IN = 555;
@@ -81,7 +80,6 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         createGoogleRequest();
         mAuth = FirebaseAuth.getInstance();
 
@@ -101,7 +99,18 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent i = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(i);
+        }
 
+
+    }
     private void createAccount(final String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -110,9 +119,15 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            addUser(new Users(name.getText().toString(), address.getText().toString(),
-                                    email, phone.getText().toString().trim(), ""));
+                            // Write a message to the database
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("message");
+
+                            myRef.setValue("Hello, World!");
+                            Toast.makeText(Sign_up.this, "success ", Toast.LENGTH_SHORT).show();
+                            Users users = new Users(name.getText().toString(), address.getText().toString(),
+                                    email, phone.getText().toString().trim());
+                            addUser(users);
                             Log.i("1111111111111", "user added successfuly");
                             Intent i = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(i);
@@ -128,26 +143,14 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                 });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Intent i = new Intent(getBaseContext(), MainActivity.class);
-            startActivity(i);
-        }
 
 
-    }
-
-    void addUser(Users users) {
-
-// Write a message to the database
+    private void addUser(Users users) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference().child("users").push();
+        DatabaseReference myRef = database.getReference("users").child(users.getPhone());
 
         myRef.setValue(users);
+
     }
 
     void createGoogleRequest() {
@@ -174,7 +177,6 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
                             Intent i = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(i);
                         } else {

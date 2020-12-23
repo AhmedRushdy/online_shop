@@ -49,10 +49,10 @@ public class AddingUser extends AppCompatActivity {
             }
         });
     }
-    void addUser(Users users){
+    private void addUser(Users users){
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child(user_name.getText().toString()+"_"+System.currentTimeMillis());
+        DatabaseReference myRef = database.getReference("users").push();
 
         myRef.setValue(users);
 

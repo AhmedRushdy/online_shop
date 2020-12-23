@@ -6,12 +6,12 @@ public class Products {
     private String Proid,
             proName,
             proDescribtion,
+            image,
             categoryID;
     private int quantity;
     private float price,
     discount,
     rate;
-    private List<String> images;
     public void setProid(String proid) {
         Proid = proid;
     }
@@ -84,17 +84,17 @@ public class Products {
     public Products() {
     }
 
-    public Products(String proName, String categoryID, int quantity, float price, float discount, float rate, List<String> images) {
+    public Products(String proName, String categoryID, int quantity, float price, float discount, float rate, String image) {
         this.proName = proName;
         this.categoryID = categoryID;
         this.quantity = quantity;
         this.price = price;
         this.discount = discount;
         this.rate = rate;
-        this.images = images;
+        this.image = image;
     }
 
-    public Products(String proid, String proName, String proDescribtion, String categoryID, int quantity, float price, float discount, float rate, List<String> images) {
+    public Products(String proid, String proName, String proDescribtion, String categoryID, int quantity, float price, float discount, float rate, String image) {
         Proid = proid;
         this.proName = proName;
         this.proDescribtion = proDescribtion;
@@ -103,7 +103,7 @@ public class Products {
         this.price = price;
         this.discount = discount;
         this.rate = rate;
-        this.images = images;
+        this.image = image;
     }
 
     public Products(String proid, String proName, String proDescribtion, int quantity, float price, float discount, float rate) {

@@ -13,7 +13,7 @@
         android:layout_height="120dp"
         android:layout_gravity="start"
         android:layout_margin="20dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/defualt_product"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />

@@ -1,13 +1,12 @@
 package com.example.yourdevices.models;
 
 public class Users {
-    private String userID;
-
-
-    private String name;
-    private String email;
-    private String phone;
-
+    private String userID
+            , name
+            , email
+            , phone
+            , address
+            , avatar;
     public Users(String userID, String name, String email, String phone, String address, String avatar) {
         this.userID = userID;
         this.name = name;
@@ -17,11 +16,11 @@ public class Users {
         this.avatar = avatar;
     }
 
-    private String address;
-    private String avatar;
+
 
     public Users() {
     }
+
     public String getUserID() {
         return userID;
     }
@@ -70,11 +69,10 @@ public class Users {
         return avatar;
     }
 
-    public Users(String name,String address, String email, String phone, String avatar) {
+    public Users(String name, String address, String email, String phone) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.phone = phone;
-        this.avatar = avatar;
     }
 }

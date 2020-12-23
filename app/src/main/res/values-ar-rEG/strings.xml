@@ -39,4 +39,5 @@
     <string name="address_hint">ادخل العنوان</string>
     <string name="phone_number">رقم الهاتف</string>
     <string name="complete">اكمل التسجيل</string>
+    <string name="add_to_cart">اضف الى العربة</string>
 </resources>

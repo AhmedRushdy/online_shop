@@ -50,4 +50,5 @@
     <string name="address_hint">your address</string>
     <string name="phone_number">your phone number</string>
     <string name="complete">complete registeration</string>
+    <string name="add_to_cart">Add to cart</string>
 </resources>
