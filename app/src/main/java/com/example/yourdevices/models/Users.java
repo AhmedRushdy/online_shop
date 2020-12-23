@@ -1,13 +1,29 @@
 package com.example.yourdevices.models;
 
 public class Users {
+    private String userID;
+
+
     private String name;
     private String email;
     private String phone;
+
+    public Users(String userID, String name, String email, String phone, String address, String avatar) {
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.avatar = avatar;
+    }
+
     private String address;
     private String avatar;
 
     public Users() {
+    }
+    public String getUserID() {
+        return userID;
     }
 
     public void setNamed(String named) {

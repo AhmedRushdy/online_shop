@@ -33,6 +33,9 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 import static android.content.ContentValues.TAG;
+/*
+ it has created for using in two activities (Sign in and log in )
+*/
 
 public class FacebookHelper {
         private LoginButton loginButton;
