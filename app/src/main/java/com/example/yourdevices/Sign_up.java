@@ -59,7 +59,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Sign_up extends AppCompatActivity implements View.OnClickListener {
+
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     EditText email, password, name, address, phone;
     Button sign_in;
     private String TAG = "sign in ";
@@ -119,11 +121,6 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            // Write a message to the database
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("message");
-
-                            myRef.setValue("Hello, World!");
                             Toast.makeText(Sign_up.this, "success ", Toast.LENGTH_SHORT).show();
                             Users users = new Users(name.getText().toString(), address.getText().toString(),
                                     email, phone.getText().toString().trim());
@@ -148,7 +145,6 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
     private void addUser(Users users) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(users.getPhone());
-
         myRef.setValue(users);
 
     }
@@ -174,8 +170,13 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        currentUser = mAuth.getCurrentUser();
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            String name = currentUser.getDisplayName();
+                            String uid = currentUser.getUid();
+                            String email = currentUser.getEmail();
+                            String phone = currentUser.getPhoneNumber();
                             Log.d(TAG, "signInWithCredential:success");
                             Intent i = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(i);

@@ -3,15 +3,25 @@ package com.example.yourdevices.models;
 import java.util.List;
 
 public class Delivary {
-    private String id , name , phone , email;
-    private List<String> ordersId;
+    private String uid , name, phone, email, orders;
 
-    public String getId() {
-        return id;
+    public Delivary() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Delivary(String uid, String name, String phone, String email, String orders) {
+        this.uid = uid;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.orders = orders;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {
@@ -38,29 +48,11 @@ public class Delivary {
         this.email = email;
     }
 
-    public List<String> getOrdersId() {
-        return ordersId;
+    public String getOrders() {
+        return orders;
     }
 
-    public void setOrdersId(List<String> ordersId) {
-        this.ordersId = ordersId;
-    }
-
-    public Delivary(String name, String phone, String email, List<String> ordersId) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.ordersId = ordersId;
-    }
-
-    public Delivary() {
-    }
-
-    public Delivary(String id, String name, String phone, String email, List<String> ordersId) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.ordersId = ordersId;
+    public void setOrders(String orders) {
+        this.orders = orders;
     }
 }
