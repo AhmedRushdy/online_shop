@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string-array name="components">
+        <item>Supermarket</item>
+        <item>Clothes</item>
+        <item>Phones</item>
+        <item>Kitchen</item>
+        <item>Games</item>
+        <item>Health</item>
+        <item>Electrical</item>
+        <item>Cleaners</item>
+    </string-array>
+
     <string name="app_name">أجهزتك</string>
     <string name="communicate">تواصل معنا</string>
     <string name="menu_home" translatable="true">صفحة البداية</string>

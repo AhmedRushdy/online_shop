@@ -113,17 +113,18 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
 
 
     }
+
     private void createAccount(final String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        currentUser = mAuth.getCurrentUser();
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             Toast.makeText(Sign_up.this, "success ", Toast.LENGTH_SHORT).show();
-                            Users users = new Users(name.getText().toString(), address.getText().toString(),
-                                    email, phone.getText().toString().trim());
+                            Users users = new Users(currentUser.getUid(),name.getText().toString(), address.getText().toString(), email, phone.getText().toString().trim(),"");
                             addUser(users);
                             Log.i("1111111111111", "user added successfuly");
                             Intent i = new Intent(getBaseContext(), MainActivity.class);
@@ -139,7 +140,6 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
     }
-
 
 
     private void addUser(Users users) {
@@ -177,6 +177,7 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                             String uid = currentUser.getUid();
                             String email = currentUser.getEmail();
                             String phone = currentUser.getPhoneNumber();
+                            String avatar = currentUser.getPhotoUrl().toString();
                             Log.d(TAG, "signInWithCredential:success");
                             Intent i = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(i);

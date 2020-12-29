@@ -8,6 +8,7 @@ android {
     defaultConfig {
         applicationId "com.example.yourdevices"
         minSdkVersion 19
+        multiDexEnabled true
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -51,5 +52,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.denzcoskun:ImageSlideshow:0.0.7'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.3'
+
 
 }

@@ -115,7 +115,6 @@ public class FacebookHelper {
                         Toast.makeText(context, "exception", Toast.LENGTH_SHORT).show();
                         Log.d("Error_fb", "fb" + e.getMessage());
                     }
-
                 }
             });
 
@@ -123,7 +122,6 @@ public class FacebookHelper {
             parameters.putString("fields", "first_name,last_name,email,id");
             request.setParameters(parameters);
             request.executeAsync();
-
         }
 
         public void checkLoginStatus() {

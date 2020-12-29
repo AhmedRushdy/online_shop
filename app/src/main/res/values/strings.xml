@@ -1,4 +1,15 @@
 <resources>
+    
+    <string-array name="components">
+        <item>Supermarket</item>
+        <item>Clothes</item>
+        <item>Phones</item>
+        <item>Kitchen</item>
+        <item>Games</item>
+        <item>Health</item>
+        <item>Electrical</item>
+        <item>Cleaners</item>
+    </string-array>
     <string name="app_name">online shop</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
