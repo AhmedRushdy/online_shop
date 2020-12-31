@@ -188,6 +188,17 @@
             android:text="@string/log_in"
             android:textColor="@android:color/primary_text_dark_nodisable"
             android:textSize="18sp" />
+        <TextView
+            android:id="@+id/admin_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Are you an admin?"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_gravity="end"
+            android:textSize="18sp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:padding="10dp"/>
     </LinearLayout>
 
 </RelativeLayout>

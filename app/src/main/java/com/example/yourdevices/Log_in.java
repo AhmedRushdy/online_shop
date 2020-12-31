@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yourdevices.models.Users;
@@ -40,8 +41,11 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 
 import org.json.JSONException;
@@ -56,17 +60,16 @@ public class Log_in extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText email, password;
     LoginButton facebook;
-    Button google;
-    Button emailSignIn;
+    Button google, emailSignIn;
+    private TextView admin;
     private GoogleSignInClient mGoogleSignInClient;
     FacebookHelper facebookHelper;
     private String TAG = "sign in with google";
-    private static final String EMAIL = "email";
-    private static final String PUBLIC_PROFILE = "public profile";
 
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     private final static int RC_SIGN_IN = 555;
 
-    private CallbackManager mCallbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,17 +85,22 @@ public class Log_in extends AppCompatActivity {
 
         createGoogleRequest();
         mAuth = FirebaseAuth.getInstance();
-
+        database = FirebaseDatabase.getInstance();
+        admin = findViewById(R.id.admin_tv);
         google = findViewById(R.id.google_btn);
         emailSignIn = findViewById(R.id.sign_in_btn);
         email = findViewById(R.id.email_et);
         password = findViewById(R.id.password_et);
         facebook = findViewById(R.id.fb_login);
 
-        mCallbackManager = CallbackManager.Factory.create();
-        List<String> permissionNeeds = Arrays.asList("user_photos", "email",
-                "user_birthday", "public_profile", "AccessToken");
 
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                email.setHint("Enter your number");
+                emailSignIn.setText("Login as an Admin");
+            }
+        });
         google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,8 +116,34 @@ public class Log_in extends AppCompatActivity {
         emailSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logIn(email.getText().toString(), password.getText().toString());
 
+                if (emailSignIn.getText() == "Login as an Admin") {
+                    logInAsAdmin(email.getText().toString(), password.getText().toString());
+                } else if (emailSignIn.getText().toString() == "LOG IN")
+                    logIn(email.getText().toString(), password.getText().toString());
+            }
+        });
+    }
+
+    private void logInAsAdmin(final String phone, final String password) {
+        myRef = database.getReference();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("admins").child(phone).child("password").getValue().toString().equals(password)) {
+
+                    startActivity(new Intent(Log_in.this, AdminPanel.class));
+
+                } else {
+                    Toast.makeText(Log_in.this, "wrong pass ", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
     }
