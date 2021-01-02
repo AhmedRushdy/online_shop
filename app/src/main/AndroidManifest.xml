@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminPanel"></activity>
+        <activity android:name=".AdminAddProducts"></activity>
+        <activity android:name=".AdminPanel" />
         <activity android:name=".ProductActivity" />
         <activity android:name=".AddingUser" />
         <activity android:name=".LikedProducts" />

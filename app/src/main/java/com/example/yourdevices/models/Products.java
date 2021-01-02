@@ -9,110 +9,92 @@ public class Products {
             image,
             categoryID;
     private int quantity;
-    private float price,
-    discount,
-    rate;
-    public void setProid(String proid) {
-        Proid = proid;
+    private float price;
+    private float discount;
+
+    public Products() {
     }
 
-    public void setProName(String proName) {
+    public Products(String proName, String proDescribtion, String image, float price, float discount) {
         this.proName = proName;
-    }
-
-    public void setProDescribtion(String proDescribtion) {
         this.proDescribtion = proDescribtion;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setPrice(float price) {
+        this.image = image;
         this.price = price;
-    }
-
-    public void setDiscount(float discount) {
         this.discount = discount;
     }
 
-    public void setRate(float rate) {
-        this.rate = rate;
+    public Products(String proid, String proName, String proDescribtion, String image, String categoryID, int quantity, float price, float discount) {
+        Proid = proid;
+        this.proName = proName;
+        this.proDescribtion = proDescribtion;
+        this.image = image;
+        this.categoryID = categoryID;
+        this.quantity = quantity;
+        this.price = price;
+        this.discount = discount;
     }
-
     public String getProid() {
         return Proid;
+    }
+
+    public void setProid(String proid) {
+        Proid = proid;
     }
 
     public String getProName() {
         return proName;
     }
 
+    public void setProName(String proName) {
+        this.proName = proName;
+    }
+
     public String getProDescribtion() {
         return proDescribtion;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public void setProDescribtion(String proDescribtion) {
+        this.proDescribtion = proDescribtion;
     }
 
-    public float getPrice() {
-        return price;
+    public String getImage() {
+        return image;
     }
 
-    public float getDiscount() {
-        return discount;
-    }
-
-    public float getRate() {
-        return rate;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCategoryID() {
         return categoryID;
     }
 
-    public Products(String proid, String proName, String proDescribtion, int quantity, float price, float rate) {
-        Proid = proid;
-        this.proName = proName;
-        this.proDescribtion = proDescribtion;
-        this.quantity = quantity;
-        this.price = price;
-        this.rate = rate;
-    }
-
-    public Products() {
-    }
-
-    public Products(String proName, String categoryID, int quantity, float price, float discount, float rate, String image) {
-        this.proName = proName;
+    public void setCategoryID(String categoryID) {
         this.categoryID = categoryID;
-        this.quantity = quantity;
-        this.price = price;
-        this.discount = discount;
-        this.rate = rate;
-        this.image = image;
     }
 
-    public Products(String proid, String proName, String proDescribtion, String categoryID, int quantity, float price, float discount, float rate, String image) {
-        Proid = proid;
-        this.proName = proName;
-        this.proDescribtion = proDescribtion;
-        this.categoryID = categoryID;
-        this.quantity = quantity;
-        this.price = price;
-        this.discount = discount;
-        this.rate = rate;
-        this.image = image;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public Products(String proid, String proName, String proDescribtion, int quantity, float price, float discount, float rate) {
-        Proid = proid;
-        this.proName = proName;
-        this.proDescribtion = proDescribtion;
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
-        this.price = price;
-        this.discount = discount;
-        this.rate = rate;
     }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
 }
