@@ -8,4 +8,38 @@
     <color name="face_book_btn">#1F57E3</color>
     <color name="twitter_btn">#FF00C3FF</color>
     <color name="bg">#123456</color>
+
+
+
+    <color name="colorPrimary1">#0082c8</color>
+    <color name="colorPrimaryDark1">#0082c8</color>
+    <color name="colorAccent1">#03DAC5</color>
+    //Other colors
+
+    <color name="gray">#ACACAC</color>
+    <color name="rushdyColor">#2EA2DF</color>
+    <color name="gray50">#D3D3D3</color>
+    <color name="colorORANGERED">#FF4500</color>
+    <color name="colorDARKORANGE">#FF8C00</color>
+    <color name="colorORANGE">#FFA500</color>
+    <color name="colorGOLD">#FFD700</color>
+    <color name="colorYELLOW">#FFFF00</color>
+    <color name="colorYELLOWGREEN">#9ACD32</color>
+    <color name="PinView_input">#1ED526</color>
+    <color name="dark">#ADABAB</color>
+    <color name="buttonbackground">#464444</color>
+    <color name="MainDarkBar">#E22F5792</color>
+    <color name="colorAccen">#FF4081</color>
+
+    <color name="yellowMain_50">#80EBC502</color>
+    <color name="black50">#99000000</color>
+    <color name="black15">#26000000</color>
+    <color name="fragment_background">#F1F1F1</color>
+    <color name="UploadActivity_color">#243447</color>
+    <color name="MainActivity">#1E1E1E</color>
+
+
+
+    <color name="alber_michel">#303135</color>
+
 </resources>

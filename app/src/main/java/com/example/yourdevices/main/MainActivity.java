@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.yourdevices.Profile;
+import com.example.yourdevices.R;
+import com.example.yourdevices.Start;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,7 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,16 +26,14 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 
-import java.util.ArrayList;
-import java.util.List;
+import me.ibrahimsn.lib.OnItemSelectedListener;
+import me.ibrahimsn.lib.SmoothBottomBar;
 
 public class MainActivity extends AppCompatActivity {
+
+    Fragment fragment;
+    SmoothBottomBar bottomBar;
 
     private AppBarConfiguration mAppBarConfiguration;
     ImageView view;
@@ -45,6 +46,27 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        bottomBar = (SmoothBottomBar) findViewById(R.id.bottomBar);
+        fragment = new HomeFragment();
+        bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelect(int i) {
+                switch (i) {
+                    case 0:
+                        fragment = new HomeFragment();
+                        break;
+                    case 1:
+                        fragment = new FavouriteFragment();
+                        break;
+                    case 2:
+                        fragment = new ProfileFragment();
+                        break;
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+                return true;
+            }
+        });
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
 
         mAuth = FirebaseAuth.getInstance();
 

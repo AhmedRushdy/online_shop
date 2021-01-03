@@ -9,8 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.ripple.RippleDrawableCompat;
-import com.google.android.material.ripple.RippleUtils;
+import com.example.yourdevices.main.MainActivity;
 
 public class Start extends AppCompatActivity implements View.OnClickListener {
     CardView skip;
@@ -33,7 +32,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.skip:
-                i = new Intent(Start.this,MainActivity.class);
+                i = new Intent(Start.this, MainActivity.class);
                 startActivity(i);
                 break;
             case R.id.sign_up_activity:

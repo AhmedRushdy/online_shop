@@ -1,11 +1,7 @@
 package com.example.yourdevices.models;
 
 public class Products {
-    private String Proid,
-            proName,
-            proDescribtion,
-            image,
-            categoryID;
+    private String proName, proDescribtion, image;
     private int quantity;
     private float price;
     private float discount;
@@ -18,25 +14,15 @@ public class Products {
         this.proDescribtion = proDescribtion;
         this.image = image;
         this.price = price;
-
     }
 
-    public Products(String proid, String proName, String proDescribtion, String image, String categoryID, int quantity, float price, float discount) {
-        Proid = proid;
+    public Products(String proName, String proDescribtion, String image, int quantity, float price, float discount) {
         this.proName = proName;
         this.proDescribtion = proDescribtion;
         this.image = image;
-        this.categoryID = categoryID;
         this.quantity = quantity;
         this.price = price;
         this.discount = discount;
-    }
-    public String getProid() {
-        return Proid;
-    }
-
-    public void setProid(String proid) {
-        Proid = proid;
     }
 
     public String getProName() {
@@ -63,14 +49,6 @@ public class Products {
         this.image = image;
     }
 
-    public String getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -94,5 +72,4 @@ public class Products {
     public void setDiscount(float discount) {
         this.discount = discount;
     }
-
 }

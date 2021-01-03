@@ -14,10 +14,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/frame_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="60dp"
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -27,7 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_shopping_basket" />
+            app:srcCompat="@drawable/ic_shopping_basket" />
+        
+
 
         <me.ibrahimsn.lib.SmoothBottomBar
             android:id="@+id/bottomBar"
@@ -46,14 +57,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_view"
-                android:layout_width="230dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:fitsSystemWindows="true"
-                app:headerLayout="@layout/nav_header_main"
-                app:menu="@menu/activity_main_drawer" />
+<!--            <com.google.android.material.navigation.NavigationView-->
+<!--                android:id="@+id/nav_view"-->
+<!--                android:layout_width="230dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="start"-->
+<!--                android:fitsSystemWindows="true"-->
+<!--                app:headerLayout="@layout/nav_header_main"-->
+<!--                app:menu="@menu/activity_main_drawer" />-->
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

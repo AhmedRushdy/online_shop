@@ -104,8 +104,7 @@ public class AdminAddProducts extends AppCompatActivity {
 //        productMap.put("product description", product.getProDescribtion().toString());
 //        productMap.put("product price", product.getPrice());
 //        productMap.put("product image", product.getImage().toString());
-        myRef.child("category").child(productCategory).push().setValue(new Products(proName, proDescription, img.toString()
-                , price));
+        myRef.child("category").child(productCategory).push().setValue(new Products(proName, proDescription, img.toString(),price));
 
 
     }
