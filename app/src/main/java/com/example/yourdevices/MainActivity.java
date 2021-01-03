@@ -34,13 +34,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    String cNames[];
-    int cImages[] = {R.drawable.supermarket, R.drawable.clothes, R.drawable.phones, R.drawable.kichen, R.drawable.games, R.drawable.health, R.drawable.electrical, R.drawable.cleaners};
-    private RecyclerView mainComponent;
-    ComponentAdapter componentAdapter;
-    List<SliderModel> sliderModelList;
-    ViewPager2 sliderPager;
-    SliderModel slider_1, slider_2, slider_3, slider_4;
     private AppBarConfiguration mAppBarConfiguration;
     ImageView view;
     FirebaseAuth mAuth;
@@ -52,18 +45,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        cNames = getResources().getStringArray(R.array.components);
-        sliderPager = findViewById(R.id.slider);
-        sliderModelList = new ArrayList<>();
-        setupSliders();
 
         mAuth = FirebaseAuth.getInstance();
-        mainComponent = findViewById(R.id.main_component);
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        mainComponent.setLayoutManager(staggeredGridLayoutManager);
-//        componentList = new ArrayList<>();
-        componentAdapter = new ComponentAdapter(getApplicationContext(), cNames, cImages);
-        mainComponent.setAdapter(componentAdapter);
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -141,48 +124,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setupSliders() {
-        slider_1 = new SliderModel();
-        slider_1.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/jonathan-marchal-xBybRdNp9iw-unsplash.jpg?alt=media&token=33e6dba0-96d3-4f94-b2f6-59839d959b39";
-        slider_1.sliderTitle = "Cofee";
-        slider_1.location = "Chicago";
-        slider_1.starRating = 4.3f;
-        sliderModelList.add(slider_1);
 
-        slider_2 = new SliderModel();
-        slider_2.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/tamara-gore-nnsEUKefn1U-unsplash.jpg?alt=media&token=d35d8a45-f1aa-43bb-9299-9f96071e6441";
-        slider_2.sliderTitle = "Cofee";
-        slider_2.location = "Chicago";
-        slider_2.starRating = 4.5f;
-        sliderModelList.add(slider_2);
-
-        slider_3 = new SliderModel();
-        slider_3.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/david-gavi-fGI9a_W6sdI-unsplash.jpg?alt=media&token=02968815-cc8e-4350-a24c-6ca3342da805";
-        slider_3.sliderTitle = "Cofee";
-        slider_3.location = "Chicago";
-        slider_3.starRating = 4.5f;
-        sliderModelList.add(slider_3);
-
-        slider_4 = new SliderModel();
-        slider_4.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/adrian-dascal-Z4S7NHh26ig-unsplash.jpg?alt=media&token=80a3d2fd-83a8-4833-9646-0d113e3b5af8";
-        slider_4.sliderTitle = "Cofee";
-        slider_4.location = "Chicago";
-        slider_4.starRating = 4.5f;
-        sliderModelList.add(slider_4);
-
-        sliderPager.setAdapter(new SliderAdapter(sliderModelList));
-
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 - Math.abs(position);
-                page.setScaleY(0.95f + r * 0.05f);
-
-            }
-        });
-
-        sliderPager.setPageTransformer(compositePageTransformer);
-    }
 }
