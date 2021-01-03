@@ -9,12 +9,16 @@
     tools:context=".AdminAddProducts">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/product_img"
         android:layout_width="match_parent"
         android:layout_height="217dp"
         android:contentDescription="choose image"
         app:srcCompat="@drawable/ic_choose_product_image_foreground" />
+
+
+
     <EditText
+        android:id="@+id/add_product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Product name"
@@ -25,7 +29,7 @@
         android:background="@drawable/et_products"
         />
     <EditText
-        android:id="@+id/add_product_name"
+        android:id="@+id/add_product_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Price"
@@ -35,6 +39,7 @@
         android:padding="10dp"
         android:background="@drawable/et_products"/>
     <EditText
+        android:id="@+id/add_product_describtion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Describtion"
@@ -44,6 +49,7 @@
         android:padding="10dp"
         android:background="@drawable/et_products"/>
     <EditText
+        android:id="@+id/add_discount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Discount"
@@ -53,6 +59,7 @@
         android:padding="10dp"
         android:background="@drawable/et_products"        />
     <Button
+        android:id="@+id/add_product_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Product"

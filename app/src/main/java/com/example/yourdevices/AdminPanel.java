@@ -12,10 +12,12 @@ import android.widget.Toast;
 public class AdminPanel extends AppCompatActivity implements View.OnClickListener {
     private Button supermarket, clothes, games, phones, kitchen, health, cleaners, electerical;
     private Intent i;
+    private String productCat = "111";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_panel);
+
         supermarket = findViewById(R.id.add_supermarket);
         supermarket.setOnClickListener(this);
         clothes = findViewById(R.id.add_clothes);
@@ -32,6 +34,9 @@ public class AdminPanel extends AppCompatActivity implements View.OnClickListene
         health.setOnClickListener(this);
         electerical = findViewById(R.id.add_electrical);
         electerical.setOnClickListener(this);
+
+        i = new Intent(this, AdminAddProducts.class);
+
     }
 
     @Override
@@ -39,62 +44,54 @@ public class AdminPanel extends AppCompatActivity implements View.OnClickListene
         switch (view.getId()) {
             case R.id.add_supermarket: {
                 Toast.makeText(this, "supermarket clicked", Toast.LENGTH_SHORT).show();
-                i = new Intent(this, AdminAddProducts.class);
-                i.putExtra("supermarket","supermarket");
+                i.putExtra(productCat,"supermarket");
                 startActivity(i);
                 break;
             }
             case R.id.add_cleaners: {
                 Toast.makeText(this, "cleaners clicked", Toast.LENGTH_SHORT).show();
-                i = new Intent(this, AdminAddProducts.class);
-                i.putExtra("cleaners", "cleaners");
+                i.putExtra(productCat, "cleaners");
                 startActivity(i);
                 break;
 
             }
             case R.id.add_clothes: {
                 Toast.makeText(this, "clothes clicked", Toast.LENGTH_SHORT).show();
-                i = new Intent(this, AdminAddProducts.class);
-                i.putExtra("clothes", "cloths");
+                i.putExtra(productCat, "cloths");
                 startActivity(i);
                 break;
 
             }
             case R.id.add_electrical: {
                 Toast.makeText(this, "electrical clicked", Toast.LENGTH_SHORT).show();
-                i = new Intent(this, AdminAddProducts.class);
-                i.putExtra("electrical", "electrical");
+                i.putExtra(productCat, "electrical");
                 startActivity(i);
                 break;
 
             }
             case R.id.add_games: {
                 Toast.makeText(this, "games clicked", Toast.LENGTH_SHORT).show();
-                i = new Intent(this, AdminAddProducts.class);
-                i.putExtra("games", "games");
+                i.putExtra(productCat, "games");
                 startActivity(i);
                 break;
 
             }
             case R.id.add_health: {
                 Toast.makeText(this, "health clicked", Toast.LENGTH_SHORT).show();
-                i = new Intent(this, AdminAddProducts.class);
-                i.putExtra("health", "health");
+                i.putExtra(productCat, "health");
                 startActivity(i);
                 break;
 
             }
             case R.id.add_kitchen: {
                 Toast.makeText(this, "kitchen clicked", Toast.LENGTH_SHORT).show();
-                i = new Intent(this, AdminAddProducts.class);
-                i.putExtra("kitchen", "kitchen");
+                i.putExtra(productCat, "kitchen");
                 startActivity(i);
                 break;
             }
             case R.id.add_phones: {
                 Toast.makeText(this, "phones clicked", Toast.LENGTH_SHORT).show();
-                i = new Intent(this, AdminAddProducts.class);
-                i.putExtra("phones", "phones");
+                i.putExtra(productCat, "phones");
                 startActivity(i);
                 break;
             }

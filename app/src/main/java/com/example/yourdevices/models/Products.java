@@ -1,7 +1,5 @@
 package com.example.yourdevices.models;
 
-import java.util.List;
-
 public class Products {
     private String Proid,
             proName,
@@ -15,12 +13,12 @@ public class Products {
     public Products() {
     }
 
-    public Products(String proName, String proDescribtion, String image, float price, float discount) {
+    public Products(String proName, String proDescribtion, String image, float price) {
         this.proName = proName;
         this.proDescribtion = proDescribtion;
         this.image = image;
         this.price = price;
-        this.discount = discount;
+
     }
 
     public Products(String proid, String proName, String proDescribtion, String image, String categoryID, int quantity, float price, float discount) {
