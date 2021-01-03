@@ -54,6 +54,7 @@ public class AdminAddProducts extends AppCompatActivity {
     Uri imageUri;
     private StorageReference mStorageRef;
     StorageReference filePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,9 +104,8 @@ public class AdminAddProducts extends AppCompatActivity {
 //        productMap.put("product description", product.getProDescribtion().toString());
 //        productMap.put("product price", product.getPrice());
 //        productMap.put("product image", product.getImage().toString());
-            myRef.child("category").child(productCategory).push().setValue(new Products(proName, proDescription, img.toString()
-                    , price));
-
+        myRef.child("category").child(productCategory).push().setValue(new Products(proName, proDescription, img.toString()
+                , price));
 
 
     }
@@ -147,12 +147,12 @@ public class AdminAddProducts extends AppCompatActivity {
 
     private void uploadImage() {
 
-       filePath = mStorageRef.child(productCategory).child(System.currentTimeMillis()+".jpg");
+        filePath = mStorageRef.child(productCategory).child(System.currentTimeMillis() + ".jpg");
 
         filePath.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                if (!task.isSuccessful()){
+                if (!task.isSuccessful()) {
                     throw task.getException();
                 }
                 return filePath.getDownloadUrl();
@@ -160,9 +160,9 @@ public class AdminAddProducts extends AppCompatActivity {
         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Uri downUri = task.getResult();
-                    Toast.makeText(AdminAddProducts.this, ""+downUri, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddProducts.this, "" + downUri, Toast.LENGTH_SHORT).show();
                     addProduct(downUri);
                 }
             }

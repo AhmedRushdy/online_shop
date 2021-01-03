@@ -1,6 +1,7 @@
 package com.example.yourdevices;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,7 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class AdminPanel extends AppCompatActivity implements View.OnClickListener {
-    private Button supermarket, clothes, games, phones, kitchen, health, cleaners, electerical;
+    private CardView supermarket, clothes, games, phones, kitchen, health, cleaners, electerical;
     private Intent i;
     private String productCat = "111";
     @Override

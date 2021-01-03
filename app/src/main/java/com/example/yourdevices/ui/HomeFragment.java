@@ -32,11 +32,11 @@ public class HomeFragment extends Fragment {
     List<SliderModel> sliderModelList;
     ViewPager2 sliderPager;
     SliderModel slider_1, slider_2, slider_3, slider_4;
-
+    View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
         initiation();
         setupSliders();
 
@@ -47,16 +47,16 @@ public class HomeFragment extends Fragment {
 
     private void initiation() {
 
-        mainComponent = findViewById(R.id.main_component);
+        mainComponent = view.findViewById(R.id.main_component);
         cNames = getResources().getStringArray(R.array.components);
-        sliderPager = findViewById(R.id.slider);
+        sliderPager = view.findViewById(R.id.slider);
         sliderModelList = new ArrayList<>();
 
 
         // recyclerview initiation
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mainComponent.setLayoutManager(staggeredGridLayoutManager);
-        componentAdapter = new ComponentAdapter(getApplicationContext(), cNames, cImages);
+        componentAdapter = new ComponentAdapter(view.getContext(), cNames, cImages);
         mainComponent.setAdapter(componentAdapter);
     }
 
