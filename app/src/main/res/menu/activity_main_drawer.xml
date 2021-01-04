@@ -22,14 +22,14 @@
             />
     </group>
 
-    <item android:title="@string/communicate"
-        >
-        <menu>
-            <item
-                android:icon="@drawable/ic_gmail"
-                android:title="Gmail"
-                android:id="@+id/gmail"
-                ></item>
-        </menu>
-    </item>
+<!--    <item android:title="@string/communicate"-->
+<!--        >-->
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:icon="@drawable/ic_gmail"-->
+<!--                android:title="Gmail"-->
+<!--                android:id="@+id/gmail"-->
+<!--                ></item>-->
+<!--        </menu>-->
+<!--    </item>-->
 </menu>

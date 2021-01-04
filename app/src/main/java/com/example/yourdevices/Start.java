@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.yourdevices.main.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Start extends AppCompatActivity implements View.OnClickListener {
     CardView skip;
@@ -28,6 +30,16 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         sign_up.setOnClickListener(this);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent i = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(i);
+        }}
     @Override
     public void onClick(View v) {
         switch (v.getId()){

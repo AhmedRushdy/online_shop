@@ -108,8 +108,9 @@ public class Log_in extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child("admins").child(phone).child("password").getValue().toString().equals(password)) {
-
-                    startActivity(new Intent(Log_in.this, AdminPanel.class));
+                    Intent intent = new Intent(Log_in.this, AdminPanel.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
 
                 } else {
                     Toast.makeText(Log_in.this, "wrong pass ", Toast.LENGTH_SHORT).show();

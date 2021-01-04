@@ -15,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,52 +34,52 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 public class MainActivity extends AppCompatActivity {
 
     Fragment fragment;
-    SmoothBottomBar bottomBar;
 
     private AppBarConfiguration mAppBarConfiguration;
     ImageView view;
     FirebaseAuth mAuth;
-
+//    SmoothBottomBar bottomBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        bottomBar = (SmoothBottomBar) findViewById(R.id.bottomBar);
-        fragment = new HomeFragment();
-        bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelect(int i) {
-                switch (i) {
-                    case 0:
-                        fragment = new HomeFragment();
-                        break;
-                    case 1:
-                        fragment = new FavouriteFragment();
-                        break;
-                    case 2:
-                        fragment = new ProfileFragment();
-                        break;
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
-                return true;
-            }
-        });
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+////
+//        bottomBar = findViewById(R.id.bottomBar);
+//        fragment = new HomeFragment();
+//        bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
+//
+//            @Override
+//            public void onItemSelect(int i) {
+//                switch (i) {
+//                    case 0:
+//                        fragment = new HomeFragment();
+//                        break;
+//                    case 1:
+//                        fragment = new FavouriteFragment();
+//                        break;
+//                    case 2:
+//                        fragment = new ProfileFragment();
+//                        break;
+//                }
+//                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+//                return ;
+//            }
+//        });
+        //getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
 
         mAuth = FirebaseAuth.getInstance();
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

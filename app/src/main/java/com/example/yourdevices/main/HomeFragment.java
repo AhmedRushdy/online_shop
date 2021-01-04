@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -51,6 +52,7 @@ public class HomeFragment extends Fragment {
         cNames = getResources().getStringArray(R.array.components);
         sliderPager = view.findViewById(R.id.slider);
         sliderModelList = new ArrayList<>();
+
 
 
         // recyclerview initiation
