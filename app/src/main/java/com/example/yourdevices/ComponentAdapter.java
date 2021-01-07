@@ -26,7 +26,7 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.MyVi
     public ComponentAdapter() {
     }
 
-    public ComponentAdapter(Context context, String cNames[], int cImages[]) {
+    public ComponentAdapter(Context context, String cNames[], int cImages[] ) {
         this.context = context;
         this.cNames = cNames;
         this.cImages = cImages;
@@ -69,12 +69,17 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.MyVi
         TextView componentName;
         RelativeLayout layout;
 
-
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView ) {
             super(itemView);
             componentImage = itemView.findViewById(R.id.component_image);
             componentName = itemView.findViewById(R.id.component_name);
             layout = itemView.findViewById(R.id.relative_layout);
+
+
         }
+
+
+
     }
+
 }

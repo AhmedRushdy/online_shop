@@ -1,9 +1,11 @@
 package com.example.yourdevices.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +21,12 @@ import com.example.yourdevices.ComponentAdapter;
 import com.example.yourdevices.R;
 import com.example.yourdevices.SliderAdapter;
 import com.example.yourdevices.SliderModel;
+import com.example.yourdevices.ViewProductsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment  {
 
 
     String cNames[];
@@ -40,7 +43,6 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         initiation();
         setupSliders();
-
 
         return view;
     }
@@ -106,6 +108,7 @@ public class HomeFragment extends Fragment {
 
         sliderPager.setPageTransformer(compositePageTransformer);
     }
+
 
 
 }

@@ -133,7 +133,9 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
 
     private void googleSignUp() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        Toast.makeText(this, "sign out", Toast.LENGTH_SHORT).show();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
     }
 
 
