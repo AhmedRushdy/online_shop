@@ -1,18 +1,20 @@
 package com.example.yourdevices.models;
 
 public class Users {
-    private String userID, name, email, phone, address, avatar;
+    private String userID, name, email, phone, address, avatar, favourite, cart;
 
     public Users() {
     }
 
-    public Users(String userID, String name, String email, String phone, String address, String avatar) {
+    public Users(String userID, String name, String email, String phone, String address, String avatar, String favourite, String cart) {
         this.userID = userID;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.avatar = avatar;
+        this.favourite = favourite;
+        this.cart = cart;
     }
 
     public String getUserID() {
@@ -63,7 +65,22 @@ public class Users {
         return avatar;
     }
 
-//    public Users(String name, String address, String email, String phone) {
+    public String getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(String favourite) {
+        this.favourite = favourite;
+    }
+
+    public String getCart() {
+        return cart;
+    }
+
+    public void setCart(String cart) {
+        this.cart = cart;
+    }
+    //    public Users(String name, String address, String email, String phone) {
 //        this.name = name;
 //        this.address = address;
 //        this.email = email;

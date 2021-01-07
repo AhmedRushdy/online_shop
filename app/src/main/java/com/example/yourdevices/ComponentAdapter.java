@@ -1,14 +1,17 @@
 package com.example.yourdevices;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.KeyEventDispatcher;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,16 +43,19 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.componentName.setText(cNames[position]);
         holder.componentImage.setImageResource(cImages[position]);
-//        try {
-//            Picasso.get().load(componentImage).placeholder(R.drawable.supermarket).into(holder.componentImage);
-//        } catch (Exception e) {
-//
-//        }
+        holder.componentCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemName = cNames[position];
+                Intent intent = new Intent(context, ViewProductsActivity.class);
+                intent.putExtra("NameOfCategory",itemName);
+                context.startActivity(intent);
+                Toast.makeText(context,""+itemName,Toast.LENGTH_SHORT).show();
+            }
+        });
 
         if(position == 0){
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -68,12 +74,14 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.MyVi
         ImageView componentImage;
         TextView componentName;
         RelativeLayout layout;
+        CardView componentCard;
 
         public MyViewHolder(@NonNull View itemView ) {
             super(itemView);
             componentImage = itemView.findViewById(R.id.component_image);
             componentName = itemView.findViewById(R.id.component_name);
             layout = itemView.findViewById(R.id.relative_layout);
+            componentCard = itemView.findViewById(R.id.component_card);
 
 
         }
