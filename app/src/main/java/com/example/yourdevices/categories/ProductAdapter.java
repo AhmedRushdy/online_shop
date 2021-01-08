@@ -56,7 +56,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
                 itemId = getItem(position).getId();
                 Intent sharedIntent = new Intent(view.getContext(), ProductActivity.class);
                 sharedIntent.putExtra("Item_Name", itemName);
-                sharedIntent.putExtra("Item_Image", itemImage.toString());
+                sharedIntent.putExtra("Item_Image", itemImage);
                 sharedIntent.putExtra("Item_Description", itemDescription);
                 sharedIntent.putExtra("Item_Price", "" + itemPrice);
                 sharedIntent.putExtra("Item_Id", itemId);
@@ -70,7 +70,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
                 }
                 view.getContext().startActivity(sharedIntent, options.toBundle());
                 Toast.makeText(view.getContext(), itemName, Toast.LENGTH_SHORT).show();
-                view.getContext().startActivity(sharedIntent);
+                //view.getContext().startActivity(sharedIntent);
 
             }
 
@@ -88,43 +88,5 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
 
         return new ProductHolder(view);
     }
-
-//    public class ProductViewHolder extends RecyclerView.ViewHolder {
-//        TextView productName, productPrice;
-//        ImageView productImage;
-//        ConstraintLayout productsItem;
-//
-//        public ProductViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    mClickListener.onItemClick(view, getAdapterPosition());
-//                }
-//            });
-//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View view) {
-//                    mClickListener.onItemLongClick(view, getAdapterPosition());
-//                    return false;
-//                }
-//            });
-//            productImage = itemView.findViewById(R.id.product_card_img);
-//            productName = itemView.findViewById(R.id.get_product_name);
-//            productPrice = itemView.findViewById(R.id.get_product_price);
-//            productsItem = itemView.findViewById(R.id.view_parent);
-//        }
-//
-//        private ProductViewHolder.ClickListener mClickListener;
-//
-//        public interface ClickListener {
-//            void onItemClick(View view, int position);
-//            void onItemLongClick(View view, int position);
-//        }
-//
-//        public void setOnClickListener(ProductViewHolder.ClickListener clickListener) {
-//            mClickListener = clickListener;
-//        }
-//    }
 
 }

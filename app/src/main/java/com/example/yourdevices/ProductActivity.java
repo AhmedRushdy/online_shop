@@ -1,6 +1,7 @@
 package com.example.yourdevices;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -17,12 +19,22 @@ public class ProductActivity extends AppCompatActivity {
     private TextView itemName, itemPrice, itemDescription, itemType;
     private String itemId;
     private CardView addToCart;
-
+    private ImageView image;
+    private Toolbar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_details);
-
+        actionBar =  findViewById(R.id.include);
+        setSupportActionBar(actionBar);
+        image = actionBar.findViewById(R.id.back);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                Toast.makeText(ProductActivity.this, "on back pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
         initiation();
         fetchDataIntent();
 
