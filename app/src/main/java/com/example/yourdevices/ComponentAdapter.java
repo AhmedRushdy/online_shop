@@ -51,9 +51,9 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.MyVi
             public void onClick(View view) {
                 String itemName = cNames[position];
                 Intent intent = new Intent(context, ViewProductsActivity.class);
-                intent.putExtra("NameOfCategory",itemName);
+                intent.putExtra("categoryName",itemName);
                 context.startActivity(intent);
-                Toast.makeText(context,""+itemName,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context,""+itemName,Toast.LENGTH_SHORT).show();
             }
         });
 

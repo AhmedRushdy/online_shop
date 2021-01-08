@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.yourdevices.categories.ProductAdapter;
 import com.example.yourdevices.models.Products;
@@ -25,8 +26,10 @@ public class ViewProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_products);
 
-        categoryName = getIntent().getStringExtra("NameOfCategory").toLowerCase();
-
+        categoryName = getIntent().getStringExtra("categoryName").toLowerCase();
+        if(categoryName !=null){
+            Toast.makeText(getApplicationContext(),categoryName,Toast.LENGTH_SHORT);
+        }
         productRV = findViewById(R.id.products_rv);
         productRV.setLayoutManager(new LinearLayoutManager(this));
 
