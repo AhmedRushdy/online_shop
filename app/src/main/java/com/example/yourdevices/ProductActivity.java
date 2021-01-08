@@ -1,9 +1,11 @@
 package com.example.yourdevices;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ public class ProductActivity extends AppCompatActivity {
     private ImageView itemIV;
     private TextView itemName, itemPrice, itemDescription, itemType;
     private String itemId;
+    private CardView addToCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,13 @@ public class ProductActivity extends AppCompatActivity {
 
         initiation();
         fetchDataIntent();
+
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
@@ -41,5 +51,6 @@ public class ProductActivity extends AppCompatActivity {
         itemPrice = findViewById(R.id.price_product);
         itemDescription = findViewById(R.id.desc_product);
         itemType = findViewById(R.id.productType);
+        addToCart = findViewById(R.id.add_to_cart);
     }
 }
