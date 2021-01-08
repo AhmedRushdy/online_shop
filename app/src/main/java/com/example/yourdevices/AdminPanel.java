@@ -58,7 +58,7 @@ public class AdminPanel extends AppCompatActivity implements View.OnClickListene
             }
             case R.id.add_clothes: {
                 Toast.makeText(this, "clothes clicked", Toast.LENGTH_SHORT).show();
-                i.putExtra(productCat, "cloths");
+                i.putExtra(productCat, "clothes");
                 startActivity(i);
                 break;
 

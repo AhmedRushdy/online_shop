@@ -19,6 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProductAdapter extends FirebaseRecyclerAdapter<Products,ProductAdapter.ProductViewHolder> {
 
 
@@ -35,7 +37,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products,ProductAdap
     @Override
     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
         holder.productName.setText(model.getProName());
-        holder.productPrice.setText((int) model.getPrice());
+        holder.productPrice.setText(String.valueOf(model.getPrice()));
         Picasso.get().load(model.getImage()).into(holder.productImage);
     }
 
@@ -49,7 +51,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products,ProductAdap
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView productName , productPrice;
-        ImageView productImage;
+        CircleImageView productImage;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             productImage = itemView.findViewById(R.id.product_card_img);

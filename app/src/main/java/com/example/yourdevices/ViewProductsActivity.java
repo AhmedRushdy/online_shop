@@ -15,9 +15,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ViewProductsActivity extends AppCompatActivity {
-
-
-    private String productCategory;
     private RecyclerView productRV;
     private ProductAdapter productAdapter;
     private String categoryName;
@@ -32,6 +29,7 @@ public class ViewProductsActivity extends AppCompatActivity {
 
         productRV = findViewById(R.id.products_rv);
         productRV.setLayoutManager(new LinearLayoutManager(this));
+
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("category")
@@ -53,4 +51,5 @@ public class ViewProductsActivity extends AppCompatActivity {
         super.onStop();
         productAdapter.stopListening();
     }
+
 }
