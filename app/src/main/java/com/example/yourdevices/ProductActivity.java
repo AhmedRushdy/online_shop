@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class ProductActivity extends AppCompatActivity {
 
     private ImageView itemIV;
@@ -28,7 +30,8 @@ public class ProductActivity extends AppCompatActivity {
         itemPrice.setText(getIntent().getStringExtra("Item_Price"));
         itemDescription.setText(getIntent().getStringExtra("Item_Description"));
         itemDescription.setText(getIntent().getStringExtra("Item_Description"));
-        itemIV.setImageURI(Uri.parse(getIntent().getStringExtra("Item_Image")));
+       // itemIV.setImageURI(Uri.parse(getIntent().getStringExtra("Item_Image")));
+        Picasso.get().load(Uri.parse(getIntent().getStringExtra("Item_Image"))).into(itemIV);
         itemId = getIntent().getStringExtra("Item_Id");
     }
 

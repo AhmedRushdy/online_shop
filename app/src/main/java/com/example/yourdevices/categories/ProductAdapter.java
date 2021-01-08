@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yourdevices.ProductActivity;
 import com.example.yourdevices.R;
 import com.example.yourdevices.ViewProductsActivity;
 import com.example.yourdevices.models.Products;
@@ -53,7 +54,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
                 itemDescription = getItem(position).getProDescribtion();
                 itemPrice = getItem(position).getPrice();
                 itemId = getItem(position).getId();
-                Intent sharedIntent = new Intent(view.getContext(), ViewProductsActivity.class);
+                Intent sharedIntent = new Intent(view.getContext(), ProductActivity.class);
                 sharedIntent.putExtra("Item_Name", itemName);
                 sharedIntent.putExtra("Item_Image", itemImage.toString());
                 sharedIntent.putExtra("Item_Description", itemDescription);
@@ -63,7 +64,10 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
                 pairs[0] = new Pair<View, String>(holder.productImage, "Image_Transition");
                 pairs[1] = new Pair<View, String>(holder.productName, "Name_Transition");
                 pairs[2] = new Pair<View, String>(holder.productPrice, "Price_Transition");
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) view.getContext(), pairs);
+                ActivityOptions options = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    options = ActivityOptions.makeSceneTransitionAnimation((Activity) view.getContext(), pairs);
+                }
                 view.getContext().startActivity(sharedIntent, options.toBundle());
                 Toast.makeText(view.getContext(), itemName, Toast.LENGTH_SHORT).show();
                 view.getContext().startActivity(sharedIntent);
