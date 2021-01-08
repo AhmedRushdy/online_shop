@@ -54,10 +54,11 @@
         android:id="@+id/desc_product"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="10dp"
         android:text="Description"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_to_cart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productType" />
@@ -73,40 +74,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_product" />
 
-    <RelativeLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/btn_layout_background"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/add_to_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="20dp">
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginBottom="20dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="40dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/car"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_to_cart"
-                android:layout_margin="5dp"
-                android:layout_gravity="bottom|center_horizontal"
-                />
+                android:padding="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="64dp"
+                    android:layout_height="match_parent"
+                    android:saveEnabled="true"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_cart"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toTopOf="@id/cart_Txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/cart_Txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add to Cart"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:gravity="center_horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/iv1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
