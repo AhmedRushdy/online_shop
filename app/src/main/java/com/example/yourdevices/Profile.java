@@ -18,7 +18,8 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        log_out = findViewById(R.id.log_out_btn);
+        iv = findViewById(R.id.change_image);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             log_out.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +39,4 @@ public class Profile extends AppCompatActivity {
         // [START auth_sign_out]
         FirebaseAuth.getInstance().signOut();
         // [END auth_sign_out]
-    }
-
-    }
+    }}

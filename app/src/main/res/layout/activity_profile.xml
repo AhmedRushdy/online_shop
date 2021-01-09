@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher_foreground"
+            app:srcCompat="@drawable/ic_launcher_foreground"
             android:id="@+id/change_image"/>
     </com.google.android.material.circularreveal.CircularRevealFrameLayout>
 

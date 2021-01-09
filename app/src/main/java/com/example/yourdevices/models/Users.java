@@ -77,6 +77,10 @@ public class Users {
         return cart;
     }
 
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public void setCart(String cart) {
         this.cart = cart;
     }

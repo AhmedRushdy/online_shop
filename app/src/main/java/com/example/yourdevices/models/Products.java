@@ -10,6 +10,12 @@ public class Products {
     public Products() {
     }
 
+    public Products(String proName, String image, float price) {
+        this.proName = proName;
+        this.image = image;
+        this.price = price;
+    }
+
     public Products(String id, String proName, String proDescribtion, String image, float price) {
         this.id = id;
         this.proName = proName;

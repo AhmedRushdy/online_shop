@@ -1,4 +1,4 @@
-package com.example.yourdevices.main;
+package com.example.yourdevices.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +43,6 @@ public class HomeFragment extends Fragment  {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         initiation();
         setupSliders();
-
         return view;
     }
 

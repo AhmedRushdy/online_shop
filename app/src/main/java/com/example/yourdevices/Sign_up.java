@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.yourdevices.main.MainActivity;
+import com.example.yourdevices.ui.MainActivity;
 import com.example.yourdevices.models.Users;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -41,7 +41,6 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
     LoginButton facebook;
     Button google;
     private GoogleSignInClient mGoogleSignInClient;
-
 
     private final static int RC_SIGN_IN = 555;
     private FacebookHelper facebookHelper;
@@ -97,7 +96,7 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             Toast.makeText(Sign_up.this, "success ", Toast.LENGTH_SHORT).show();
-                            Users users = new Users(currentUser.getUid(),name.getText().toString(), address.getText().toString(), email, phone.getText().toString().trim(),"", "","");
+                            Users users = new Users("",name.getText().toString(), address.getText().toString(), email, phone.getText().toString().trim(),"", "","");
                             addUser(users);
                             Log.i("1111111111111", "user added successfuly");
                             Intent i = new Intent(getBaseContext(), MainActivity.class);
@@ -117,7 +116,9 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
 
     private void addUser(Users users) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child(users.getPhone());
+        String key = FirebaseDatabase.getInstance().getReference().push().getKey();
+        users.setUserID(key);
+        DatabaseReference myRef = database.getReference("users").child(key);
         myRef.setValue(users);
 
     }

@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yourdevices.Log_in;
 import com.example.yourdevices.ProductActivity;
 import com.example.yourdevices.R;
 import com.example.yourdevices.ViewProductsActivity;
@@ -23,9 +24,14 @@ import com.example.yourdevices.models.Products;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.flaviofaria.kenburnsview.KenBurnsView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,7 +50,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
     @Override
     protected void onBindViewHolder(@NonNull final ProductHolder holder, int position, @NonNull final Products model) {
         holder.productName.setText(model.getProName());
-        holder.productPrice.setText(String.valueOf(model.getPrice() + " L.E"));
+        holder.productPrice.setText(model.getPrice() + " L.E");
         Picasso.get().load(model.getImage()).into(holder.productImage);
         holder.setOnClickListener(new ProductHolder.ClickListener() {
             @Override
@@ -88,5 +94,17 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
 
         return new ProductHolder(view);
     }
-
+    //add product to firebase cart
+    private void addProductToCart() {
+        Products products = new Products(itemName,itemImage,itemPrice);
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+           return;
+        }
+        else{
+            String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String key =  FirebaseDatabase.getInstance().getReference().push().getKey();
+            DatabaseReference cartReferance =FirebaseDatabase.getInstance().getReference().child("cart").child(UID).child(key);
+            cartReferance.setValue(products);
+        }
+    }
 }

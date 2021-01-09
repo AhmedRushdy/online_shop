@@ -7,7 +7,7 @@
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
-        android:id="@+id/iv_product"
+        android:id="@+id/iv_product_cart"
         android:layout_width="100dp"
         android:layout_height="120dp"
         android:layout_gravity="start"
@@ -21,15 +21,15 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="5dp"
         android:gravity="start"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_product"
+        app:layout_constraintStart_toEndOf="@+id/iv_product_cart"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/cart_product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -42,6 +42,7 @@
 
 
         <TextView
+            android:id="@+id/cart_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

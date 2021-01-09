@@ -1,4 +1,4 @@
-package com.example.yourdevices.main;
+package com.example.yourdevices.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,46 +29,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import me.ibrahimsn.lib.OnItemSelectedListener;
-import me.ibrahimsn.lib.SmoothBottomBar;
-
 public class MainActivity extends AppCompatActivity {
-
-    Fragment fragment;
 
     private AppBarConfiguration mAppBarConfiguration;
     ImageView view;
     FirebaseAuth mAuth;
-//    SmoothBottomBar bottomBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-////
-//        bottomBar = findViewById(R.id.bottomBar);
-//        fragment = new HomeFragment();
-//        bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelect(int i) {
-//                switch (i) {
-//                    case 0:
-//                        fragment = new HomeFragment();
-//                        break;
-//                    case 1:
-//                        fragment = new FavouriteFragment();
-//                        break;
-//                    case 2:
-//                        fragment = new ProfileFragment();
-//                        break;
-//                }
-//                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
-//                return ;
-//            }
-//        });
-        //getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -76,8 +48,15 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+               CarFragment carFragment = new CarFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                // Replace whatever is in the fragment_container view with this fragment,
+                // and add the transaction to the back stack if needed
+                transaction.replace(R.id.nav_host_fragment, carFragment);
+                transaction.addToBackStack(null);
+
+// Commit the transaction
+                transaction.commit();
             }
         });
 
@@ -86,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_waiting, R.id.nav_car, R.id.nav_solded)
                 .setDrawerLayout(drawer)
