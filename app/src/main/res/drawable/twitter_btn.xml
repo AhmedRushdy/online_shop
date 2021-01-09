@@ -4,11 +4,11 @@
         >
         <shape android:shape="rectangle">
             <solid
-                android:color="@color/twitter_btn"
+                android:color="@color/MainDarkBar"
                 ></solid>
 
             <corners
-                android:radius="20dp"
+                android:radius="10dp"
                 ></corners>
         </shape>
     </item>

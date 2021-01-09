@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:background="@drawable/card_bg"
-    android:layout_marginVertical="5dp"
-    android:layout_marginHorizontal="20dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginHorizontal="10dp"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/iv_product"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="120dp"
         android:layout_gravity="start"
-        android:layout_margin="20dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/kichen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,90 +33,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/cutive"
+            android:gravity="center_horizontal"
             android:text="Product Name"
-            android:textSize="23sp"
             android:textColor="@android:color/secondary_text_light"
+            android:textSize="23sp"
             android:textStyle="bold" />
 
+
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="the seller "
-            android:textColor="@android:color/secondary_text_light"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="5dp"
-                android:text="@string/seller"
-                android:textColor="@android:color/secondary_text_light"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="seller name"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="5dp"
-                android:text="@string/quantity"
-                android:textColor="@android:color/secondary_text_light"
-                android:textSize="18sp" />
-
-<!--            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                app:backGroundColor="@color/colorPrimary"-->
-<!--                app:initialNumber="0"-->
-<!--                app:textSize="20sp"/>-->
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:gravity="center"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="100.0"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginRight="5dp"
-                android:textColor="@android:color/holo_blue_dark"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LE"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/holo_blue_dark"
-                />
-        </LinearLayout>
+            android:fontFamily="@font/gravitas_one"
+            android:text="100.0"
+            android:textColor="@color/dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 

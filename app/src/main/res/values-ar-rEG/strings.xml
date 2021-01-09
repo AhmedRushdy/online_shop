@@ -52,4 +52,5 @@
     <string name="phone_number">رقم الهاتف</string>
     <string name="complete">اكمل التسجيل</string>
     <string name="add_to_cart">اضف الى العربة</string>
+    <string name="total_price">السعر الكلى:</string>
 </resources>
