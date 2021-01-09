@@ -20,7 +20,7 @@ public class ProductHolder extends RecyclerView.ViewHolder {
     TextView productName, productPrice;
     ImageView productImage;
     ConstraintLayout productsItem;
-    private Button addToCart;
+    Button addToCart;
     public ProductHolder(@NonNull View itemView) {
         super(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +49,7 @@ public class ProductHolder extends RecyclerView.ViewHolder {
                 mClickListener.onItemClick(view, getAdapterPosition());
             }
         });
+
     }
 
 

@@ -12,10 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewProductsActivity" android:theme="@style/imageActivityStyle"></activity>
+        <activity android:name=".ConfirmOrderActivity"></activity>
+        <activity
+            android:name=".ViewProductsActivity"
+            android:theme="@style/imageActivityStyle" />
         <activity android:name=".AdminAddProducts" />
         <activity android:name=".AdminPanel" />
-        <activity android:name=".ProductActivity" android:theme="@style/imageActivityStyle"/>
+        <activity
+            android:name=".ProductActivity"
+            android:theme="@style/imageActivityStyle" />
         <activity android:name=".AddingUser" />
         <activity android:name=".LikedProducts" />
         <activity android:name=".Profile" />

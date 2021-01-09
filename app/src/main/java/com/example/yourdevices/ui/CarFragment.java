@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,8 @@ public class CarFragment extends Fragment {
     private RecyclerView carProducts;
     private CarAdapter carAdapter;
     private View view;
-
+    private float totalPrice =0;
+    TextView total;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,21 +44,52 @@ public class CarFragment extends Fragment {
         carProducts = view.findViewById(R.id.car_rv);
         carProducts.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        String key = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String key = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        total = view.findViewById(R.id.total_price);
 
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
                         .setQuery(FirebaseDatabase.getInstance().getReference()
                                 .child("cart").child(key), Products.class)
                         .build();
+        for (Products options1: options.getSnapshots()){
+            totalPrice += options1.getPrice();
+            Toast.makeText(view.getContext(), totalPrice+"", Toast.LENGTH_SHORT).show();
+            
+        }
+        total.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                total.setText(String.valueOf(totalPrice));
 
+            }
+        });
+
+        Button button = view.findViewById(R.id.confirm_process);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), key, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         carAdapter = new CarAdapter(options);
         carProducts.setAdapter(carAdapter);
         return view;
     }
 
-//    private void initRecyclerView() {
+    @Override
+    public void onStart() {
+        super.onStart();
+        carAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        carAdapter.stopListening();
+    }
+    //    private void initRecyclerView() {
 //
 //        cartReferance.addValueEventListener(new ValueEventListener() {
 //            @Override

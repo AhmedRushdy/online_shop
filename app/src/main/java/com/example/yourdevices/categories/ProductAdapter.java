@@ -77,7 +77,12 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
                 view.getContext().startActivity(sharedIntent, options.toBundle());
                 Toast.makeText(view.getContext(), itemName, Toast.LENGTH_SHORT).show();
                 //view.getContext().startActivity(sharedIntent);
-
+                holder.addToCart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        addProductToCart();
+                    }
+                });
             }
 
             @Override
@@ -96,7 +101,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
     }
     //add product to firebase cart
     private void addProductToCart() {
-        Products products = new Products(itemName,itemImage,itemPrice);
+        Products products = new Products(itemName,"",itemImage,itemPrice);
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
            return;
         }
@@ -107,4 +112,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
             cartReferance.setValue(products);
         }
     }
+
+
+
 }

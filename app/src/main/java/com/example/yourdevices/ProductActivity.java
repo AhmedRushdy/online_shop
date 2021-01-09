@@ -57,13 +57,14 @@ public class ProductActivity extends AppCompatActivity {
     }
     //add product to firebase cart
     private void addProductToCart() {
-        Map<String,Object> map = new HashMap();
-        map.put("name",getIntent().getStringExtra("Item_Name"));
-        map.put("price",getIntent().getStringExtra("Item_Price"));
-        map.put("description",getIntent().getStringExtra("Item_Description"));
-        map.put("img_Url",getIntent().getStringExtra("Item_Image"));
-        Products products = new Products(getIntent().getStringExtra("Item_Name"),getIntent().getStringExtra("Item_Image"),
-                Float.parseFloat(getIntent().getStringExtra("Item_Price")));
+//        Map<String,Object> map = new HashMap();
+//        map.put("name",getIntent().getStringExtra("Item_Name"));
+//        map.put("price",getIntent().getStringExtra("Item_Price"));
+//        map.put("description",getIntent().getStringExtra("Item_Description"));
+//        map.put("img_Url",getIntent().getStringExtra("Item_Image"));
+        Products products = new Products(
+                getIntent().getStringExtra("Item_Name")
+                ,"",getIntent().getStringExtra("Item_Image"), Float.parseFloat(getIntent().getStringExtra("Item_Price")));
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             Intent i = new Intent(this,Log_in.class);
@@ -81,8 +82,6 @@ public class ProductActivity extends AppCompatActivity {
         itemName.setText(getIntent().getStringExtra("Item_Name"));
         itemPrice.setText(getIntent().getStringExtra("Item_Price"));
         itemDescription.setText(getIntent().getStringExtra("Item_Description"));
-//        itemDescription.setText(getIntent().getStringExtra("Item_Description"));
-       // itemIV.setImageURI(Uri.parse(getIntent().getStringExtra("Item_Image")));
         Picasso.get().load(Uri.parse(getIntent().getStringExtra("Item_Image"))).into(itemIV);
         itemId = getIntent().getStringExtra("Item_Id");
     }
