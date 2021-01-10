@@ -1,13 +1,18 @@
 package com.example.yourdevices;
 
 import android.graphics.Canvas;
+import android.media.Image;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.yourdevices.models.Products;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,9 +44,11 @@ public class CartActivity extends AppCompatActivity {
     private CarAdapter carAdapter;
     private ArrayList<Products> productsList;
     private View view;
+    private Button confirmProcess, confirmBottomSheet, deleteBottomSheet;
     private float totalPrice = 0;
     TextView total;
     String deletedItem = null;
+    ImageView ivConfirmed;
 
 
     @Override
@@ -51,6 +59,62 @@ public class CartActivity extends AppCompatActivity {
 
         firebaseInitiation();
         carProducts = findViewById(R.id.car_rv);
+        confirmProcess = findViewById(R.id.confirm_process);
+        ivConfirmed = findViewById(R.id.iv_confirm);
+        confirmProcess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(CartActivity.this
+                        , R.style.BottomSheetDialogTheme);
+                View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                        .inflate(R.layout.bottom_sheet_layout, (ConstraintLayout) findViewById(R.id.bottom_sheet));
+                bottomSheetDialog.setContentView(bottomSheetView);
+                confirmBottomSheet = bottomSheetDialog.findViewById(R.id.confirm);
+                confirmBottomSheet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        databaseReference.child(currentUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(CartActivity.this, "Confirmed successfully", Toast.LENGTH_SHORT).show();
+                                    carProducts.setVisibility(View.INVISIBLE);
+                                    ivConfirmed.setImageDrawable(getResources().getDrawable(R.drawable.ic_delivery_cuate));
+                                    ivConfirmed.setVisibility(View.VISIBLE);
+                                    bottomSheetDialog.dismiss();
+
+
+                                }
+                            }
+                        });
+                    }
+
+                });
+                deleteBottomSheet = bottomSheetDialog.findViewById(R.id.delete);
+                deleteBottomSheet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        databaseReference.child(currentUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(CartActivity.this, "Deleted successfully", Toast.LENGTH_SHORT).show();
+                                    carProducts.setVisibility(View.INVISIBLE);
+                                    ivConfirmed.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete_cart));
+                                    ivConfirmed.setVisibility(View.VISIBLE);
+                                    bottomSheetDialog.dismiss();
+
+
+                                }
+                            }
+                        });
+                    }
+                });
+                bottomSheetDialog.show();
+            }
+        });
+
+
         carProducts.setLayoutManager(new LinearLayoutManager(this));
 
         final String key = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -60,26 +124,28 @@ public class CartActivity extends AppCompatActivity {
 //        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
 //        carProducts.addItemDecoration(dividerItemDecoration);
 
-        databaseReference.child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot != null) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Products products = dataSnapshot.getValue(Products.class);
-                        productsList.add(products);
+        databaseReference.child(currentUser.getUid()).
+
+                addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot != null) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                Products products = dataSnapshot.getValue(Products.class);
+                                productsList.add(products);
+
+                            }
+                            carAdapter = new CarAdapter(getApplicationContext(), productsList);
+                            carAdapter.notifyDataSetChanged();
+                            carProducts.setAdapter(carAdapter);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
                     }
-                    carAdapter = new CarAdapter(getApplicationContext(), productsList);
-                    carAdapter.notifyDataSetChanged();
-                    carProducts.setAdapter(carAdapter);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                });
 
 //        FirebaseRecyclerOptions<Products> options =
 //                new FirebaseRecyclerOptions.Builder<Products>()
@@ -120,20 +186,24 @@ public class CartActivity extends AppCompatActivity {
             int position = viewHolder.getAdapterPosition();
             switch (direction) {
                 case ItemTouchHelper.LEFT:
-                    if (productsList.size() > 0) {
-                        productsList.remove(position);
-                        deletedItem = productsList.get(position).getId();
-                        deleteFromFirebase(deletedItem);
-                        carAdapter.notifyItemRemoved(position);
-                    }
+//                    if (productsList.size() > 0) {
+//                        productsList.remove(position);
+//                        deletedItem = productsList.get(position).getId();
+//                        deleteFromFirebase(deletedItem);
+//                        carAdapter.notifyItemRemoved(position);
+//                    }
+                    productsList.remove(position);
+
                     break;
                 case ItemTouchHelper.RIGHT:
-                    if (productsList.size() > 0) {
-                        productsList.remove(position);
-                        deletedItem = productsList.get(position).getId();
-                        deleteFromFirebase(deletedItem);
-                        carAdapter.notifyItemRemoved(position);
-                    }
+//                    if (productsList.size() > 0) {
+//                        productsList.remove(position);
+//                        deletedItem = productsList.get(position).getId();
+//                        deleteFromFirebase(deletedItem);
+//                        carAdapter.notifyItemRemoved(position);
+//                    }
+                    productsList.remove(position);
+
                     break;
                 default:
                     return;
