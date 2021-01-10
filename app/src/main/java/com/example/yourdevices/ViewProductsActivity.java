@@ -21,7 +21,8 @@ public class ViewProductsActivity extends AppCompatActivity {
     private RecyclerView productRV;
     private ProductAdapter productAdapter;
     private String categoryName;
-    ImageView imageView;
+    ImageView imageView, goToCart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +30,8 @@ public class ViewProductsActivity extends AppCompatActivity {
 
         toolBar();
         categoryName = getIntent().getStringExtra("categoryName").toLowerCase();
-        if(categoryName !=null){
-            Toast.makeText(getApplicationContext(),categoryName,Toast.LENGTH_SHORT);
+        if (categoryName != null) {
+            Toast.makeText(getApplicationContext(), categoryName, Toast.LENGTH_SHORT);
         }
         productRV = findViewById(R.id.products_rv);
         productRV.setLayoutManager(new LinearLayoutManager(this));
@@ -46,7 +47,7 @@ public class ViewProductsActivity extends AppCompatActivity {
     }
 
     private void toolBar() {
-        Toolbar actionBar =  findViewById(R.id.include2);
+        Toolbar actionBar = findViewById(R.id.include2);
         setSupportActionBar(actionBar);
         imageView = actionBar.findViewById(R.id.back);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -56,11 +57,13 @@ public class ViewProductsActivity extends AppCompatActivity {
                 Toast.makeText(ViewProductsActivity.this, "on back pressed", Toast.LENGTH_SHORT).show();
             }
         });
-        Button goToCart = actionBar.findViewById(R.id.go_to_car);
+        goToCart = actionBar.findViewById(R.id.go_to_car);
         goToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), CartActivity.class));
             }
+
         });
     }
 

@@ -65,31 +65,31 @@ public class HomeFragment extends Fragment  {
 
     private void setupSliders() {
         slider_1 = new SliderModel();
-        slider_1.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/jonathan-marchal-xBybRdNp9iw-unsplash.jpg?alt=media&token=33e6dba0-96d3-4f94-b2f6-59839d959b39";
-        slider_1.sliderTitle = "Cofee";
-        slider_1.location = "Chicago";
-        slider_1.starRating = 4.3f;
+        slider_1.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/%D8%B9%D8%B1%D9%88%D8%B6-%D9%88%D8%AE%D8%B5%D9%88%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9-%D8%A7%D9%84%D8%B5%D9%81%D8%B1%D8%A7%D8%A1-2019.jpg?alt=media&token=4fcc0bb2-dc78-4e06-a8cf-c7a03614685a";
+        slider_1.sliderTitle = "Best offers and ocassion";
+        slider_1.location = "Carforr";
+        slider_1.starRating = 5.0f;
         sliderModelList.add(slider_1);
 
         slider_2 = new SliderModel();
-        slider_2.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/tamara-gore-nnsEUKefn1U-unsplash.jpg?alt=media&token=d35d8a45-f1aa-43bb-9299-9f96071e6441";
-        slider_2.sliderTitle = "Cofee";
-        slider_2.location = "Chicago";
-        slider_2.starRating = 4.5f;
+        slider_2.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/e33b67a7c381649c9592feed97b0c9cf.png?alt=media&token=900f35af-c073-4e84-a6d4-c645fb221642";
+        slider_2.sliderTitle = "Flash deal brands";
+        slider_2.location = "Copons";
+        slider_2.starRating = 4.9f;
         sliderModelList.add(slider_2);
 
         slider_3 = new SliderModel();
-        slider_3.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/david-gavi-fGI9a_W6sdI-unsplash.jpg?alt=media&token=02968815-cc8e-4350-a24c-6ca3342da805";
-        slider_3.sliderTitle = "Cofee";
-        slider_3.location = "Chicago";
-        slider_3.starRating = 4.5f;
+        slider_3.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/Nisnass-13.jpg?alt=media&token=426306bf-3d24-490b-8f99-f46c64c267a6";
+        slider_3.sliderTitle = "T-shirts and big offers from cotoneel";
+        slider_3.location = "Cairo, Alex";
+        slider_3.starRating = 3.8f;
         sliderModelList.add(slider_3);
 
         slider_4 = new SliderModel();
-        slider_4.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/adrian-dascal-Z4S7NHh26ig-unsplash.jpg?alt=media&token=80a3d2fd-83a8-4833-9646-0d113e3b5af8";
-        slider_4.sliderTitle = "Cofee";
-        slider_4.location = "Chicago";
-        slider_4.starRating = 4.5f;
+        slider_4.imageUrl = "https://firebasestorage.googleapis.com/v0/b/your-devices.appspot.com/o/tamara-gore-nnsEUKefn1U-unsplash.jpg?alt=media&token=d35d8a45-f1aa-43bb-9299-9f96071e6441";
+        slider_4.sliderTitle = "Fresh equipement models and winter offers";
+        slider_4.location = "Mall-Masr";
+        slider_4.starRating = 4.0f;
         sliderModelList.add(slider_4);
 
         sliderPager.setAdapter(new SliderAdapter(sliderModelList));

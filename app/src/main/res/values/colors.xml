@@ -30,6 +30,7 @@
     <color name="buttonbackground">#464444</color>
     <color name="MainDarkBar">#E22F5792</color>
     <color name="colorAccen">#FF4081</color>
+    <color name="colorRed">#F41414</color>
 
     <color name="yellowMain_50">#80EBC502</color>
     <color name="black50">#99000000</color>

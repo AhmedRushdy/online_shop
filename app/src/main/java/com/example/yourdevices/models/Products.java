@@ -10,27 +10,19 @@ public class Products {
     public Products() {
     }
 
-
-    public Products(String id, String proName, String proDescribtion, String image, float price) {
-        this.id = id;
-        this.proName = proName;
-        this.proDescribtion = proDescribtion;
-        this.image = image;
-        this.price = price;
-
-    }
-    public Products( String proName, String proDescribtion, String image, float price) {
-        this.proName = proName;
-        this.proDescribtion = proDescribtion;
-        this.image = image;
-        this.price = price;
-
-    }
-
     public Products(String id, String proName, String proDescribtion, String image, int quantity, float price, float discount) {
         this.id = id;
         this.proName = proName;
+        this.image = image;
         this.proDescribtion = proDescribtion;
+        this.quantity = quantity;
+        this.price = price;
+        this.discount = discount;
+    }
+
+    public Products(String id, String proName, String image, int quantity, float price, float discount) {
+        this.id = id;
+        this.proName = proName;
         this.image = image;
         this.quantity = quantity;
         this.price = price;
@@ -43,14 +35,6 @@ public class Products {
 
     public void setProName(String proName) {
         this.proName = proName;
-    }
-
-    public String getProDescribtion() {
-        return proDescribtion;
-    }
-
-    public void setProDescribtion(String proDescribtion) {
-        this.proDescribtion = proDescribtion;
     }
 
     public String getImage() {
@@ -91,5 +75,13 @@ public class Products {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getProDescribtion() {
+        return proDescribtion;
+    }
+
+    public void setProDescribtion(String proDescribtion) {
+        this.proDescribtion = proDescribtion;
     }
 }

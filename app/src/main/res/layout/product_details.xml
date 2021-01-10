@@ -80,10 +80,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="40dp"
             android:elevation="5dp"
             app:cardCornerRadius="20dp"
-            app:cardElevation="45dp"
+            app:cardElevation="30dp"
+            app:cardBackgroundColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">

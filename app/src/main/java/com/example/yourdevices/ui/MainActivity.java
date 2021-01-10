@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     ImageView view;
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +49,15 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               CarFragment carFragment = new CarFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack if needed
-                transaction.replace(R.id.nav_host_fragment, carFragment);
-                transaction.addToBackStack(null);
-
-// Commit the transaction
-                transaction.commit();
+//                CarFragment carFragment = new CarFragment();
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                // Replace whatever is in the fragment_container view with this fragment,
+//                // and add the transaction to the back stack if needed
+//                transaction.replace(R.id.nav_host_fragment, carFragment);
+//                transaction.addToBackStack(null);
+//
+//                // Commit the transaction
+//                transaction.commit();
             }
         });
 

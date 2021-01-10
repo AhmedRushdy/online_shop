@@ -82,7 +82,7 @@ public class Log_in extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 googleSignIn();
-                Toast.makeText(Log_in.this, "google clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Log_in.this, "google clicked", Toast.LENGTH_SHORT).show();
             }
         });
         facebookHelper = new FacebookHelper(facebook, this);
@@ -211,8 +211,17 @@ public class Log_in extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent i = new Intent(getBaseContext(), MainActivity.class);
-                            startActivity(i);
+
+                            if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                                Toast.makeText(Log_in.this, "Please register your account first", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getBaseContext(), Sign_up.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                Intent i = new Intent(getBaseContext(), MainActivity.class);
+                                startActivity(i);
+                                finish();
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());

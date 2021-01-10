@@ -56,6 +56,9 @@ dependencies {
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.3'
     implementation 'com.firebaseui:firebase-ui-database:6.2.0'
+    implementation 'com.tuyenmonkey:mkloader:1.4.0'
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
+
 
 
 }

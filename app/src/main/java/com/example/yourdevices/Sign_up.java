@@ -96,11 +96,12 @@ public class Sign_up extends AppCompatActivity implements View.OnClickListener {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             Toast.makeText(Sign_up.this, "success ", Toast.LENGTH_SHORT).show();
-                            Users users = new Users("",name.getText().toString(), address.getText().toString(), email, phone.getText().toString().trim(),"", "","");
+                            Users users = new Users("", name.getText().toString(), address.getText().toString(), email, phone.getText().toString().trim(), "", "", "");
                             addUser(users);
                             Log.i("1111111111111", "user added successfuly");
                             Intent i = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(i);
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

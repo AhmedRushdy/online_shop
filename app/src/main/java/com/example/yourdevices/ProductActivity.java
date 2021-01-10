@@ -1,9 +1,5 @@
 package com.example.yourdevices;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,38 +8,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+
 import com.example.yourdevices.models.Products;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ProductActivity extends AppCompatActivity {
 
     private ImageView itemIV;
-    private TextView itemName, itemPrice, itemDescription, itemType;
+    private TextView itemName, itemPrice, itemDescribtion, itemType;
     private String itemId;
     private CardView addToCart;
-    private ImageView image;
+    private ImageView image, goToCart;
     private Toolbar actionBar;
     private DatabaseReference cartReferance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_details);
-        actionBar =  findViewById(R.id.include);
-        setSupportActionBar(actionBar);
-        image = actionBar.findViewById(R.id.back);
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-                Toast.makeText(ProductActivity.this, "on back pressed", Toast.LENGTH_SHORT).show();
-            }
-        });
+        toolBar();
         initiation();
         fetchDataIntent();
 
@@ -55,6 +44,27 @@ public class ProductActivity extends AppCompatActivity {
         });
 
     }
+
+    private void toolBar() {
+        actionBar = findViewById(R.id.include);
+        setSupportActionBar(actionBar);
+        image = actionBar.findViewById(R.id.back);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                Toast.makeText(ProductActivity.this, "on back pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        goToCart = actionBar.findViewById(R.id.go_to_car);
+        goToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), CartActivity.class));
+            }
+        });
+    }
+
     //add product to firebase cart
     private void addProductToCart() {
 //        Map<String,Object> map = new HashMap();
@@ -62,18 +72,17 @@ public class ProductActivity extends AppCompatActivity {
 //        map.put("price",getIntent().getStringExtra("Item_Price"));
 //        map.put("description",getIntent().getStringExtra("Item_Description"));
 //        map.put("img_Url",getIntent().getStringExtra("Item_Image"));
-        Products products = new Products(
-                getIntent().getStringExtra("Item_Name")
-                ,"",getIntent().getStringExtra("Item_Image"), Float.parseFloat(getIntent().getStringExtra("Item_Price")));
+        Products products = new Products("", getIntent().getStringExtra("Item_Name")
+                , getIntent().getStringExtra("Item_Image"),
+                0, Float.parseFloat(getIntent().getStringExtra("Item_Price")), 0);
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            Intent i = new Intent(this,Log_in.class);
+            Intent i = new Intent(this, Log_in.class);
             startActivity(i);
-        }
-        else{
+        } else {
             String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            String key =  FirebaseDatabase.getInstance().getReference().push().getKey();
-            DatabaseReference cartReferance =FirebaseDatabase.getInstance().getReference().child("cart").child(UID).child(key);
+            String key = FirebaseDatabase.getInstance().getReference().push().getKey();
+            DatabaseReference cartReferance = FirebaseDatabase.getInstance().getReference().child("cart").child(UID).child(key);
             cartReferance.setValue(products);
         }
     }
@@ -81,7 +90,7 @@ public class ProductActivity extends AppCompatActivity {
     private void fetchDataIntent() {
         itemName.setText(getIntent().getStringExtra("Item_Name"));
         itemPrice.setText(getIntent().getStringExtra("Item_Price"));
-        itemDescription.setText(getIntent().getStringExtra("Item_Description"));
+        itemDescribtion.setText(getIntent().getStringExtra("Item_Describtion"));
         Picasso.get().load(Uri.parse(getIntent().getStringExtra("Item_Image"))).into(itemIV);
         itemId = getIntent().getStringExtra("Item_Id");
     }
@@ -90,7 +99,7 @@ public class ProductActivity extends AppCompatActivity {
         itemIV = findViewById(R.id.iv_product);
         itemName = findViewById(R.id.tv_product);
         itemPrice = findViewById(R.id.price_product);
-        itemDescription = findViewById(R.id.desc_product);
+        itemDescribtion = findViewById(R.id.desc_product);
         itemType = findViewById(R.id.productType);
         addToCart = findViewById(R.id.add_to_cart);
     }

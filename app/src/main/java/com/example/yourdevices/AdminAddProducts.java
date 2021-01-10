@@ -1,51 +1,34 @@
 package com.example.yourdevices;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yourdevices.models.Products;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-
 public class AdminAddProducts extends AppCompatActivity {
     private static final int GALLERY_REQUEST = 111;
     private Button addProduct;
-    private EditText etName, etDescription, etPrice, discount;
-    private String proName, proDescription;
-    private float price;
+    private EditText etName, etQuantity, etDescribtion, etPrice, discount;
+    private String proName, proDescribtion;
+    private float price, proDiscount;
+    int proQuantity;
     private ImageView proImage;
     private Intent i;
     String productCategory;
@@ -63,10 +46,10 @@ public class AdminAddProducts extends AppCompatActivity {
         addProduct = findViewById(R.id.add_product_btn);
         etName = findViewById(R.id.add_product_name);
         etPrice = findViewById(R.id.add_product_price);
-        etDescription = findViewById(R.id.add_product_describtion);
+        etQuantity = findViewById(R.id.add_product_quantity);
         discount = findViewById(R.id.add_discount);
         proImage = findViewById(R.id.product_img);
-
+        etDescribtion = findViewById(R.id.add_product_description);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         database = FirebaseDatabase.getInstance();
@@ -106,30 +89,36 @@ public class AdminAddProducts extends AppCompatActivity {
 //        productMap.put("product image", product.getImage().toString());
 
         String key = myRef.child("category").child(productCategory).push().getKey();
-        myRef.child("category").child(productCategory).child(key).setValue(new Products(key,proName, proDescription, img.toString(),price));
+        myRef.child("category").child(productCategory).child(key).setValue(new Products(key, proName, proDescribtion, img.toString(), proQuantity, price, proDiscount));
 
     }
 
     private void validation() {
         proName = etName.getText().toString();
-        proDescription = etDescription.getText().toString();
         price = Float.parseFloat(etPrice.getText().toString());
+        proDiscount = Float.parseFloat(discount.getText().toString());
+        proQuantity = Integer.parseInt(etQuantity.getText().toString());
+        proDescribtion = etDescribtion.getText().toString().trim();
 
         if (proName.isEmpty()) {
             etName.setError("you should enter product name");
-            if (proDescription.isEmpty())
-                etDescription.setError("you should enter product Describtion");
+            if (proQuantity == 0)
+                etQuantity.setError("you should enter product quantity");
             if (etPrice.getText().toString().isEmpty())
-                etPrice.setError("you should enter product etPrice");
-
+                etPrice.setError("you should enter product Price");
+            if (etDescribtion.getText().toString().isEmpty())
+                etDescribtion.setError("you should enter product description");
+            if (proDiscount == 0)
+                addProduct.setError("you should enter discount");
             if (imageUri == null)
                 addProduct.setError("you should choose image");
 
         } else {
 
-            Toast.makeText(this, proName + " " + proDescription + " " + price, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, proName + " " + proQuantity + " " + price, Toast.LENGTH_SHORT).show();
             uploadImage();
         }
+
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

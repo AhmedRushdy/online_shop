@@ -84,10 +84,5 @@ public class Users {
     public void setCart(String cart) {
         this.cart = cart;
     }
-    //    public Users(String name, String address, String email, String phone) {
-//        this.name = name;
-//        this.address = address;
-//        this.email = email;
-//        this.phone = phone;
-//    }
+
 }

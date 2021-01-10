@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/background_star_rating"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -35,7 +35,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_star"
+                app:srcCompat="@drawable/ic_star"
                 android:tint="#ffffff" />
 
             <TextView
@@ -60,7 +60,7 @@
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_location"
+            app:srcCompat="@drawable/ic_location"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@id/text_slider"
             app:layout_constraintStart_toStartOf="parent"
