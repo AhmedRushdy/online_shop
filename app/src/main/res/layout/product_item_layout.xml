@@ -134,7 +134,6 @@
 
 
     <View
-        android:id="@+id/circlur_view"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/circuler_background"

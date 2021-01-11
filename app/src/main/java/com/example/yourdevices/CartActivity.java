@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yourdevices.models.Order;
 import com.example.yourdevices.models.Products;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,6 +40,7 @@ public class CartActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    DatabaseReference orderReferance;
     FirebaseUser currentUser;
     private RecyclerView carProducts;
     private CarAdapter carAdapter;
@@ -73,6 +75,8 @@ public class CartActivity extends AppCompatActivity {
                 confirmBottomSheet.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Order order = new Order(00,productsList);
+                        orderReferance.child(currentUser.getUid()).setValue(order);
                         databaseReference.child(currentUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -243,6 +247,7 @@ public class CartActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("cart");
+        orderReferance =firebaseDatabase.getReference("orders");
 
     }
 

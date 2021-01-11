@@ -44,17 +44,16 @@
                         android:id="@+id/iv111"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="32dp"
                         android:saveEnabled="true"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_diagram"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/clothes" />
 
                     <TextView
-                        android:id="@+id/tv2222"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/clothes"
@@ -94,17 +93,16 @@
                         android:id="@+id/iv2222"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="32dp"
                         android:saveEnabled="true"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_star"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/cleaners" />
 
                     <TextView
-                        android:id="@+id/tv3333"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/cleaners"
@@ -145,21 +143,19 @@
                         android:id="@+id/iv11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
                         android:saveEnabled="true"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_diagram"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/games" />
 
                     <TextView
-                        android:id="@+id/tv22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
                         android:text="@string/toys"
-                        android:textColor="#000"
+                        android:textColor="#fff"
                         android:textSize="17sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -195,21 +191,22 @@
                         android:id="@+id/iv222"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="36dp"
                         android:saveEnabled="true"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_star"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/phones" />
 
                     <TextView
-                        android:id="@+id/tv333"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/phones"
-                        android:textColor="#070707"
+                        android:textColor="#000"
                         android:textSize="17sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -246,19 +243,19 @@
                         android:id="@+id/iv3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="16dp"
                         android:saveEnabled="true"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_star"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/kichen" />
 
                     <TextView
-                        android:id="@+id/tv4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
                         android:text="@string/kitchen"
                         android:textColor="#000"
                         android:textSize="17sp"
@@ -297,19 +294,20 @@
                         android:id="@+id/iv4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="32dp"
                         android:saveEnabled="true"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_diagram"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/health" />
 
                     <TextView
-                        android:id="@+id/tv5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="16dp"
                         android:text="@string/health"
                         android:textColor="#070707"
                         android:textSize="17sp"
@@ -347,19 +345,19 @@
                         android:id="@+id/iv1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="24dp"
                         android:saveEnabled="true"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_diagram"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/supermarket" />
 
                     <TextView
-                        android:id="@+id/tv2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/supermarket"
                         android:textColor="#000"
                         android:textSize="17sp"
@@ -397,19 +395,19 @@
                         android:id="@+id/iv2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="32dp"
                         android:saveEnabled="true"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_star"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/electrical" />
 
                     <TextView
-                        android:id="@+id/tv3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/electrical"
                         android:textColor="#070707"
                         android:textSize="17sp"
@@ -440,15 +438,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
-                    android:text="Omar Mahmoud"
+                    android:text="Ahmed Rushdy"
+                    android:onClick="signOut"
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/admin_info"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="OnClick" />
 
                 <TextView
-                    android:id="@+id/tv_userJob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -477,7 +476,6 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:id="@+id/user_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:saveEnabled="true"
@@ -496,6 +494,17 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/AdminSignOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/twitter_btn"
+                    android:text="Sign out"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,20 +1,33 @@
 package com.example.yourdevices.models;
 
 public class Users {
-    private String userID, name, email, phone, address, avatar, favourite, cart;
+    private String userID;
+    private String name;
+    private String email;
+
+    public Users(String userID, String name, String email, String avatar) {
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.avatar = avatar;
+    }
+
+    private String phone;
+    private String address;
+    private String avatar;
+    private String favourite;
+    private String cart;
 
     public Users() {
     }
 
-    public Users(String userID, String name, String email, String phone, String address, String avatar, String favourite, String cart) {
+    public Users(String userID, String name, String email, String phone, String address, String avatar) {
         this.userID = userID;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.avatar = avatar;
-        this.favourite = favourite;
-        this.cart = cart;
     }
 
     public String getUserID() {

@@ -133,6 +133,7 @@ public class Log_in extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             Intent i = new Intent(getBaseContext(), MainActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
         }
 
@@ -149,8 +150,14 @@ public class Log_in extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            intent.putExtra("name",user.getDisplayName());
+                            intent.putExtra("img",user.getPhotoUrl());
+                            intent.putExtra("email",user.getEmail());
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
                             Toast.makeText(Log_in.this, "loging in ", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getBaseContext(), MainActivity.class));
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -215,11 +222,12 @@ public class Log_in extends AppCompatActivity {
                             if (task.getResult().getAdditionalUserInfo().isNewUser()) {
                                 Toast.makeText(Log_in.this, "Please register your account first", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getBaseContext(), Sign_up.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
                                 finish();
                             } else {
-                                Intent i = new Intent(getBaseContext(), MainActivity.class);
-                                startActivity(i);
+                                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                                startActivity(intent);
                                 finish();
                             }
                         } else {

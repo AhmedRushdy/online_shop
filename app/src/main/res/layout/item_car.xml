@@ -28,7 +28,6 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cart_product_image_card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -52,7 +51,6 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_content"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="65">

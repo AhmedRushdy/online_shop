@@ -1,5 +1,6 @@
 package com.example.yourdevices.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -63,7 +64,12 @@ public class Order {
         return productsID;
     }
 
-    public Order() {
+    public Order(int totalPrice, ArrayList<Products> productsList) {
+    }
+
+    public Order(float totalPrice, List<String> productsID) {
+        this.totalPrice = totalPrice;
+        this.productsID = productsID;
     }
 
     public Order(String lang, String lat, String state, String payMethod, float totalPrice, List<String> productsID) {

@@ -45,8 +45,7 @@
             android:textColor="@android:color/holo_blue_dark"
             android:fontFamily="monospace"
             android:gravity="center"
-            android:textSize="25dp"
-            android:id="@+id/tv_name"/>
+            android:textSize="25dp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -60,9 +59,7 @@
             android:gravity="center"
             android:textSize="25dp"
             android:textColor="@android:color/holo_blue_dark"
-            android:fontFamily="monospace"
-            android:id="@+id/tv_email"
-            /></LinearLayout>
+            android:fontFamily="monospace" /></LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -89,9 +86,7 @@
             android:drawableEnd="@drawable/ic_favorite"
             android:gravity="center"
             android:paddingEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/liked_products"
-            />
+            android:layout_marginBottom="5dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -108,9 +103,7 @@
                 android:drawableEnd="@drawable/ic_baseline_rate_review_24"
                 android:gravity="center"
                 android:paddingEnd="10dp"
-                android:layout_marginBottom="5dp"
-                android:id="@+id/rate"
-                />
+                android:layout_marginBottom="5dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -122,7 +115,6 @@
         android:layout_below="@+id/cv_settings"
         android:layout_marginTop="50dp"
 
-        android:id="@+id/cv_log_out"
         >
         <com.balysv.materialripple.MaterialRippleLayout
             android:layout_width="match_parent"

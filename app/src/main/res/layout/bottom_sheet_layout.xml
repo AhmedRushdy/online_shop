@@ -39,7 +39,7 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:text="Total orders Total orders Total orders Total orders Total orders Total orders Total orders Total orders Total orders Total orders Total orders Total orders Total orders Total orders "
+        android:text="if you confirm the order we will add the order to waiting list and you will pay in cash for the delivary"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

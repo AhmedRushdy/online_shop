@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.yourdevices.models.Users;
 import com.example.yourdevices.ui.MainActivity;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -17,11 +18,15 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.ResourceBundle;
 /*
  it has created for using in two activities (Sign in and log in )
 */
@@ -30,7 +35,7 @@ public class FacebookHelper {
         private LoginButton loginButton;
         private Context context;
         private CallbackManager callbackManager;
-
+        Users users;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();    // ...
     //    // Initialize Firebase Auth
         public FacebookHelper(LoginButton loginButton, Context context) {
@@ -78,6 +83,7 @@ public class FacebookHelper {
 
                     Toast.makeText(context, "User Logged out", Toast.LENGTH_LONG).show();
                 } else
+
                     loadUserProfile(currentAccessToken);
             }
         };
@@ -93,12 +99,12 @@ public class FacebookHelper {
                         String email = object.getString("email");
                         String id = object.getString("id");
                         String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
-
+                        users = new Users(id,first_name+" " +last_name,email,image_url);
+                        addUser(users);
+                        updateUIByEmail(users);
                         Log.d("Name", first_name + " " + last_name);
                         Log.d("email", email);
                         Log.d("image", image_url);
-
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(context, "exception", Toast.LENGTH_SHORT).show();
@@ -106,7 +112,6 @@ public class FacebookHelper {
                     }
                 }
             });
-
             Bundle parameters = new Bundle();
             parameters.putString("fields", "first_name,last_name,email,id");
             request.setParameters(parameters);
@@ -119,4 +124,21 @@ public class FacebookHelper {
                 loadUserProfile(AccessToken.getCurrentAccessToken());
             }
         }
+    private void updateUIByEmail(Users users) {
+
+        Intent i = new Intent(context, MainActivity.class);
+        String name = users.getName();
+        String email = users.getEmail();
+        i.putExtra("name",name);
+        i.putExtra("email",email);
+        context.startActivity(i);
+    }
+    private void addUser(Users users) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String key = FirebaseDatabase.getInstance().getReference().push().getKey();
+        users.setUserID(key);
+        DatabaseReference myRef = database.getReference("users").child(key);
+        myRef.setValue(users);
+
+    }
    }
