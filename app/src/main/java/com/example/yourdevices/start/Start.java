@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.start;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.yourdevices.ui.MainActivity;
+import com.example.yourdevices.R;
+import com.example.yourdevices.fragments.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -49,11 +50,11 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
                 startActivity(i);
                 break;
             case R.id.sign_up_activity:
-                i = new Intent(Start.this,Sign_up.class);
+                i = new Intent(Start.this, Sign_up.class);
                 startActivity(i);
                 break;
             case R.id.log_in_btn:
-                i = new Intent(Start.this,Log_in.class);
+                i = new Intent(Start.this, Log_in.class);
                 startActivity(i);
                 break;
             default:

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:paddingTop="40dp"
     android:background="@drawable/profile_bg"
-    tools:context=".Profile">
+    tools:context=".ui.Profile">
 
     <com.google.android.material.circularreveal.CircularRevealFrameLayout
         android:layout_width="150dp"

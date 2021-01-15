@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.models;
 
 public class Component {
     int i1, i2, i3, i4, i5, i6, i7, i8;

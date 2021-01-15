@@ -1,15 +1,12 @@
-package com.example.yourdevices.ui;
+package com.example.yourdevices.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -17,11 +14,10 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.yourdevices.ComponentAdapter;
+import com.example.yourdevices.adapters.ComponentAdapter;
 import com.example.yourdevices.R;
-import com.example.yourdevices.SliderAdapter;
-import com.example.yourdevices.SliderModel;
-import com.example.yourdevices.ViewProductsActivity;
+import com.example.yourdevices.adapters.SliderAdapter;
+import com.example.yourdevices.models.SliderModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.yourdevices.ui.HomeFragment"
+        android:name="com.example.yourdevices.fragments.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
 
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_waiting"
-        android:name="com.example.yourdevices.ui.WaitingFragment"
+        android:name="com.example.yourdevices.fragments.WaitingFragment"
         android:label="@string/home_second"
         tools:layout="@layout/fragment_wait">
         <action
@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/nav_solded"
-        android:name="com.example.yourdevices.ui.SoldedFragment"
+        android:name="com.example.yourdevices.fragments.SoldedFragment"
         android:label="@string/solded"
         tools:layout="@layout/fragment_solded" >
         <action

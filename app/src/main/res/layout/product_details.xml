@@ -6,7 +6,7 @@
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ProductActivity">
+    tools:context=".ui.ProductActivity">
 
     <include
         android:id="@+id/include"

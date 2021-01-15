@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.models;
 
 public class SliderModel {
     public String sliderTitle,location,imageUrl;

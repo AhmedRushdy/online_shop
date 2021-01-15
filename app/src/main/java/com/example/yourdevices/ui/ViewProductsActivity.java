@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.yourdevices.categories.ProductAdapter;
+import com.example.yourdevices.R;
+import com.example.yourdevices.adapters.ProductAdapter;
 import com.example.yourdevices.models.Products;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;

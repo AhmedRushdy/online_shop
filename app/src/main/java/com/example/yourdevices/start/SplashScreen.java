@@ -1,17 +1,16 @@
-package com.example.yourdevices;
+package com.example.yourdevices.start;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.yourdevices.R;
+import com.example.yourdevices.start.Start;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -34,7 +33,7 @@ public class SplashScreen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                startActivity(new Intent(getBaseContext(),Start.class));
+                startActivity(new Intent(getBaseContext(), Start.class));
                 // HomeActivity.class is the activity to go after showing the splash screen.
             }
 

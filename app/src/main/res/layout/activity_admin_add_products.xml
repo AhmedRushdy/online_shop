@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".AdminAddProducts">
+    tools:context=".admin.AdminAddProducts">
 
     <ImageView
         android:id="@+id/product_img"

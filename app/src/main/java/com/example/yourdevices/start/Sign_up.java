@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.start;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.yourdevices.ui.MainActivity;
+import com.example.yourdevices.FacebookHelper;
+import com.example.yourdevices.R;
+import com.example.yourdevices.fragments.MainActivity;
 import com.example.yourdevices.models.Users;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;

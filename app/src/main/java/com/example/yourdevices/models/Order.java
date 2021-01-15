@@ -10,7 +10,7 @@ public class Order {
             state,
             payMethod;
     private float totalPrice;
-    private List<String> productsID;
+    private ArrayList<Products> productsID;
 
     public void setLang(String lang) {
         this.lang = lang;
@@ -32,7 +32,7 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public void setProductsID(List<String> productsID) {
+    public void setProductsID(ArrayList<Products> productsID) {
         this.productsID = productsID;
     }
 
@@ -60,19 +60,16 @@ public class Order {
         return totalPrice;
     }
 
-    public List<String> getProductsID() {
+    public ArrayList<Products> getProductsID() {
         return productsID;
     }
 
-    public Order(int totalPrice, ArrayList<Products> productsList) {
-    }
-
-    public Order(float totalPrice, List<String> productsID) {
+    public Order(float totalPrice, ArrayList<Products> productsID) {
         this.totalPrice = totalPrice;
         this.productsID = productsID;
     }
 
-    public Order(String lang, String lat, String state, String payMethod, float totalPrice, List<String> productsID) {
+    public Order(String lang, String lat, String state, String payMethod, float totalPrice, ArrayList<Products> productsID) {
         this.lang = lang;
         this.lat = lat;
         this.state = state;

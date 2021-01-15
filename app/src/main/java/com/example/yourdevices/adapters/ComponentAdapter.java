@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,18 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.view.KeyEventDispatcher;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
+import com.example.yourdevices.R;
+import com.example.yourdevices.ui.ViewProductsActivity;
 
 public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.MyViewHolder> {
     Context context;

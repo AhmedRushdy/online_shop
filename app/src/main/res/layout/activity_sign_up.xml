@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Sign_up">
+    tools:context=".start.Sign_up">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -140,7 +140,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_shopping_cart" />
+                        app:srcCompat="@drawable/ic_shopping_cart" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

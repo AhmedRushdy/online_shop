@@ -1,7 +1,6 @@
-package com.example.yourdevices;
+package com.example.yourdevices.ui;
 
 import android.graphics.Canvas;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yourdevices.R;
+import com.example.yourdevices.adapters.CarAdapter;
 import com.example.yourdevices.models.Order;
 import com.example.yourdevices.models.Products;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,20 +40,18 @@ public class CartActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    DatabaseReference orderReferance;
+    DatabaseReference databaseReference ,orderReferance;
     FirebaseUser currentUser;
     private RecyclerView carProducts;
     private CarAdapter carAdapter;
     private ArrayList<Products> productsList;
-    private View view;
     private Button confirmProcess, confirmBottomSheet, deleteBottomSheet;
     private float totalPrice = 0;
     TextView total;
     String deletedItem = null;
     ImageView ivConfirmed;
-
-
+    Order order;
+    private String key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +59,15 @@ public class CartActivity extends AppCompatActivity {
 
 
         firebaseInitiation();
+        key = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         carProducts = findViewById(R.id.car_rv);
         confirmProcess = findViewById(R.id.confirm_process);
         ivConfirmed = findViewById(R.id.iv_confirm);
+
+        total = findViewById(R.id.total_price);
+        productsList = new ArrayList<>();
+        carProducts.setHasFixedSize(true);
         confirmProcess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,8 +80,7 @@ public class CartActivity extends AppCompatActivity {
                 confirmBottomSheet.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Order order = new Order(00,productsList);
-                        orderReferance.child(currentUser.getUid()).setValue(order);
+                        sendToOrder();
                         databaseReference.child(currentUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -121,10 +125,6 @@ public class CartActivity extends AppCompatActivity {
 
         carProducts.setLayoutManager(new LinearLayoutManager(this));
 
-        final String key = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        total = findViewById(R.id.total_price);
-        productsList = new ArrayList<>();
-        carProducts.setHasFixedSize(true);
 //        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
 //        carProducts.addItemDecoration(dividerItemDecoration);
 
@@ -137,11 +137,20 @@ public class CartActivity extends AppCompatActivity {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 Products products = dataSnapshot.getValue(Products.class);
                                 productsList.add(products);
+                                totalPrice+=products.getPrice();
 
                             }
+
+                            total.setText(String.valueOf(totalPrice));
+                            order = new Order(totalPrice,productsList);
+
                             carAdapter = new CarAdapter(getApplicationContext(), productsList);
                             carAdapter.notifyDataSetChanged();
                             carProducts.setAdapter(carAdapter);
+                        }
+                        else {
+                            ivConfirmed.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete_cart));
+                            ivConfirmed.setVisibility(View.VISIBLE);
                         }
                     }
 
@@ -150,28 +159,6 @@ public class CartActivity extends AppCompatActivity {
 
                     }
                 });
-
-//        FirebaseRecyclerOptions<Products> options =
-//                new FirebaseRecyclerOptions.Builder<Products>()
-//                        .setQuery(FirebaseDatabase.getInstance().getReference()
-//                                .child("cart").child(key), Products.class)
-//                        .build();
-//        for (Products options1 : options.getSnapshots()) {
-//            totalPrice += options1.getPrice();
-//            Toast.makeText(this, totalPrice + "", Toast.LENGTH_SHORT).show();
-//            total.setText("" + totalPrice);
-//        }
-//        Button button = findViewById(R.id.confirm_process);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(), key, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        carAdapter = new CarAdapter(options);
-//        carProducts.setAdapter(carAdapter);
-
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(carProducts);
@@ -228,26 +215,12 @@ public class CartActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        carAdapter.startListening();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-//        carAdapter.stopListening();
-
-    }
 
     private void firebaseInitiation() {
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("cart");
-        orderReferance =firebaseDatabase.getReference("orders");
 
     }
 
@@ -260,5 +233,10 @@ public class CartActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void sendToOrder(){
+        orderReferance =firebaseDatabase.getReference().child("orders");
+        orderReferance.child(currentUser.getUid()).setValue(order);
+
     }
 }

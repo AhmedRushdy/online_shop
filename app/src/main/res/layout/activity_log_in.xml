@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Log_in">
+    tools:context=".start.Log_in">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_shopping_cart" />
+                    app:srcCompat="@drawable/ic_shopping_cart" />
 
 
                 <TextView

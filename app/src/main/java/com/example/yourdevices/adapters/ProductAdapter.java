@@ -1,4 +1,4 @@
-package com.example.yourdevices.categories;
+package com.example.yourdevices.adapters;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -10,11 +10,16 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.yourdevices.ProductActivity;
+import com.example.yourdevices.ui.ProductActivity;
 import com.example.yourdevices.R;
 import com.example.yourdevices.models.Products;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -28,7 +33,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHolder> {
+public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductAdapter.ProductHolder> {
 
 
     View view;
@@ -128,4 +133,55 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductHol
     }
 
 
-}
+
+static class ProductHolder extends RecyclerView.ViewHolder {
+    TextView productName, productPrice;
+    ImageView productImage;
+    ConstraintLayout productsItem;
+    Button addToCart;
+    public ProductHolder(@NonNull View itemView) {
+        super(itemView);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mClickListener.onItemClick(view, getAdapterPosition());
+            }
+        });
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mClickListener.onItemLongClick(view,getAdapterPosition());
+                return false;
+            }
+        });
+        productImage = itemView.findViewById(R.id.product_card_img);
+        productName = itemView.findViewById(R.id.get_product_name);
+        productPrice = itemView.findViewById(R.id.get_product_price);
+        productsItem = itemView.findViewById(R.id.view_parent);
+
+        //add to cart
+        addToCart = itemView.findViewById(R.id.add_to_cart);
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mClickListener.onItemClick(view, getAdapterPosition());
+            }
+        });
+
+    }
+
+
+
+    private ProductHolder.ClickListener mClickListener;
+
+    public interface ClickListener {
+        void onItemClick(View view, int position);
+
+        void onItemLongClick(View view, int position);
+    }
+
+    public void setOnClickListener(ProductHolder.ClickListener clickListener) {
+        mClickListener = clickListener;
+    }
+
+}}

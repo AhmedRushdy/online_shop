@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.adapters;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yourdevices.R;
 import com.example.yourdevices.models.Products;
 import com.squareup.picasso.Picasso;
 

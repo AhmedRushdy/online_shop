@@ -1,4 +1,4 @@
-package com.example.yourdevices.ui;
+package com.example.yourdevices.fragments;
 
 import android.os.Bundle;
 

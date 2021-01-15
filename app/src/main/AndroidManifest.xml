@@ -12,30 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CartActivity"></activity>
-        <activity android:name=".ConfirmOrderActivity" />
+        <activity android:name=".ui.CartActivity"></activity>
         <activity
-            android:name=".ViewProductsActivity"
+            android:name=".ui.ViewProductsActivity"
             android:theme="@style/imageActivityStyle" />
-        <activity android:name=".AdminAddProducts" />
-        <activity android:name=".AdminPanel" />
+        <activity android:name=".admin.AdminAddProducts" />
+        <activity android:name=".admin.AdminPanel" />
         <activity
-            android:name=".ProductActivity"
+            android:name=".ui.ProductActivity"
             android:theme="@style/imageActivityStyle" />
-        <activity android:name=".AddingUser" />
-        <activity android:name=".LikedProducts" />
-        <activity android:name=".Profile" />
+        <activity android:name=".ui.AddingUser" />
+        <activity android:name=".ui.LikedProducts" />
+        <activity android:name=".ui.Profile" />
         <activity
-            android:name=".Sign_up"
-            android:parentActivityName=".Start"
+            android:name=".start.Sign_up"
+            android:parentActivityName=".start.Start"
             android:theme="@style/withActionBar" />
         <activity
-            android:name=".Log_in"
-            android:parentActivityName=".Start"
+            android:name=".start.Log_in"
+            android:parentActivityName=".start.Start"
             android:theme="@style/withActionBar" />
-        <activity android:name=".Start" />
+        <activity android:name=".start.Start" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".start.SplashScreen"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".fragments.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -1,4 +1,4 @@
-package com.example.yourdevices;
+package com.example.yourdevices.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.example.yourdevices.R;
 import com.example.yourdevices.models.Products;
+import com.example.yourdevices.start.Log_in;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
