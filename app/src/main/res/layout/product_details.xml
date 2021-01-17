@@ -13,7 +13,7 @@
         layout="@layout/customized_app_bar" />
 
         <ImageView
-            android:id="@+id/iv_product"
+            android:id="@+id/iv_order_fragment"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="5dp"
@@ -34,7 +34,7 @@
         android:textColor="#1976D2"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_product" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_order_fragment" />
 
     <TextView
         android:id="@+id/tv_product"
@@ -48,7 +48,7 @@
         android:transitionName="Name_Transition"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_product" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_order_fragment" />
 
     <TextView
         android:id="@+id/desc_product"

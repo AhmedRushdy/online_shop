@@ -91,7 +91,6 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Products, ProductAda
                     options = ActivityOptions.makeSceneTransitionAnimation((Activity) view.getContext(), pairs);
                 }
                 view.getContext().startActivity(sharedIntent, options.toBundle());
-                Toast.makeText(view.getContext(), itemName, Toast.LENGTH_SHORT).show();
 
                 //add to cart button
                 holder.addToCart.setOnClickListener(new View.OnClickListener() {

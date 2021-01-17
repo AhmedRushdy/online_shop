@@ -40,7 +40,7 @@ public class CartActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference ,orderReferance;
+    DatabaseReference databaseReference, orderReferance;
     FirebaseUser currentUser;
     private RecyclerView carProducts;
     private CarAdapter carAdapter;
@@ -48,10 +48,9 @@ public class CartActivity extends AppCompatActivity {
     private Button confirmProcess, confirmBottomSheet, deleteBottomSheet;
     private float totalPrice = 0;
     TextView total;
-    String deletedItem = null;
     ImageView ivConfirmed;
     Order order;
-    private String key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +58,6 @@ public class CartActivity extends AppCompatActivity {
 
 
         firebaseInitiation();
-        key = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         carProducts = findViewById(R.id.car_rv);
         confirmProcess = findViewById(R.id.confirm_process);
@@ -80,7 +78,24 @@ public class CartActivity extends AppCompatActivity {
                 confirmBottomSheet.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        sendToOrder();
+                        //add proucts for order table
+                        databaseReference.child(currentUser.getUid()).
+                                addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot != null) {
+                                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                Products products = dataSnapshot.getValue(Products.class);
+                                                orderReferance.child(currentUser.getUid()).push().setValue(products);
+                                            }
+                                        }}
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                        //remove products from cart
                         databaseReference.child(currentUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -129,7 +144,6 @@ public class CartActivity extends AppCompatActivity {
 //        carProducts.addItemDecoration(dividerItemDecoration);
 
         databaseReference.child(currentUser.getUid()).
-
                 addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -137,18 +151,17 @@ public class CartActivity extends AppCompatActivity {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 Products products = dataSnapshot.getValue(Products.class);
                                 productsList.add(products);
-                                totalPrice+=products.getPrice();
+                                totalPrice += products.getPrice();
 
                             }
 
                             total.setText(String.valueOf(totalPrice));
-                            order = new Order(totalPrice,productsList);
+                            order = new Order(totalPrice, productsList);
 
                             carAdapter = new CarAdapter(getApplicationContext(), productsList);
                             carAdapter.notifyDataSetChanged();
                             carProducts.setAdapter(carAdapter);
-                        }
-                        else {
+                        } else {
                             ivConfirmed.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete_cart));
                             ivConfirmed.setVisibility(View.VISIBLE);
                         }
@@ -159,11 +172,8 @@ public class CartActivity extends AppCompatActivity {
 
                     }
                 });
-
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(carProducts);
-
-
     }
 
     final ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -197,7 +207,6 @@ public class CartActivity extends AppCompatActivity {
 
                     break;
                 default:
-                    return;
             }
         }
 
@@ -221,6 +230,7 @@ public class CartActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("cart");
+        orderReferance = firebaseDatabase.getReference().child("orders");
 
     }
 
@@ -233,10 +243,5 @@ public class CartActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    private void sendToOrder(){
-        orderReferance =firebaseDatabase.getReference().child("orders");
-        orderReferance.child(currentUser.getUid()).setValue(order);
-
     }
 }

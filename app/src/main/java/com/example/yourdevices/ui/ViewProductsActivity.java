@@ -54,7 +54,6 @@ public class ViewProductsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
-                Toast.makeText(ViewProductsActivity.this, "on back pressed", Toast.LENGTH_SHORT).show();
             }
         });
         goToCart = actionBar.findViewById(R.id.go_to_car);

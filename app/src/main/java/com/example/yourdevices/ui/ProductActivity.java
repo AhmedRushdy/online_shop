@@ -55,7 +55,6 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
-                Toast.makeText(ProductActivity.this, "on back pressed", Toast.LENGTH_SHORT).show();
             }
         });
         goToCart = actionBar.findViewById(R.id.go_to_car);
@@ -69,11 +68,6 @@ public class ProductActivity extends AppCompatActivity {
 
     //add product to firebase cart
     private void addProductToCart() {
-//        Map<String,Object> map = new HashMap();
-//        map.put("name",getIntent().getStringExtra("Item_Name"));
-//        map.put("price",getIntent().getStringExtra("Item_Price"));
-//        map.put("description",getIntent().getStringExtra("Item_Description"));
-//        map.put("img_Url",getIntent().getStringExtra("Item_Image"));
         Products products = new Products("", getIntent().getStringExtra("Item_Name")
                 , getIntent().getStringExtra("Item_Image"),
                 0, Float.parseFloat(getIntent().getStringExtra("Item_Price")), 0);
@@ -98,7 +92,7 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void initiation() {
-        itemIV = findViewById(R.id.iv_product);
+        itemIV = findViewById(R.id.iv_order_fragment);
         itemName = findViewById(R.id.tv_product);
         itemPrice = findViewById(R.id.price_product);
         itemDescribtion = findViewById(R.id.desc_product);

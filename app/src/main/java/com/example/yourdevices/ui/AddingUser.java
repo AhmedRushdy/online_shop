@@ -17,6 +17,7 @@ import com.example.yourdevices.R;
 import com.example.yourdevices.models.Users;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -50,7 +51,7 @@ public class AddingUser extends AppCompatActivity {
             }
         });
     }
-    private void addUser(Users users){
+    private void addUser(Users users, FirebaseUser firebaseUser){
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").push();
