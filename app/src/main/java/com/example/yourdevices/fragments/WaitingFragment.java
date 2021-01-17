@@ -31,14 +31,14 @@ import java.util.ArrayList;
 public class WaitingFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference , addressRef;
+    DatabaseReference databaseReference ;
 
     FirebaseUser currentUser;
     private RecyclerView orderProducts;
     private WaitingAdapter waitingAdapter;
     private ArrayList<Products> productsList;
     private float total =0 ;
-    private TextView address, totalPrice;
+    private TextView  totalPrice;
     private View view;
     @Nullable
     @Override
@@ -49,7 +49,6 @@ public class WaitingFragment extends Fragment {
         productsList = new ArrayList<>();
         orderProducts = view.findViewById(R.id.waiting_rv);
         totalPrice = view.findViewById(R.id.total_price_waiting);
-        address = view.findViewById(R.id.tv_wait_address);
 
         orderProducts.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
@@ -82,25 +81,10 @@ public class WaitingFragment extends Fragment {
         currentUser = auth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("orders").child(currentUser.getUid());
-        addressRef = firebaseDatabase.getReference("users").child(currentUser.getUid());
     }
-    private void getAddress(){
-        addressRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.getValue() !=null){
-                    address.setText(snapshot.getValue(Users.class).getAddress());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
 
 
 
-}
+

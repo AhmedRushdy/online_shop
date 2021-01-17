@@ -90,14 +90,14 @@ public class AdminAddProducts extends AppCompatActivity {
 //        productMap.put("product image", product.getImage().toString());
 
         String key = myRef.child("category").child(productCategory).push().getKey();
-        myRef.child("category").child(productCategory).child(key).setValue(new Products(key, proName, proDescribtion, img.toString(), proQuantity, price, proDiscount));
+        myRef.child("category").child(productCategory).child(key).setValue(new Products(key, proName, proDescribtion, img.toString(), proQuantity, price,0));
 
     }
 
     private void validation() {
         proName = etName.getText().toString();
         price = Float.parseFloat(etPrice.getText().toString());
-        proDiscount = Float.parseFloat(discount.getText().toString());
+       // proDiscount = Float.parseFloat(discount.getText().toString());
         proQuantity = Integer.parseInt(etQuantity.getText().toString());
         proDescribtion = etDescribtion.getText().toString().trim();
 

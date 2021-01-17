@@ -6,20 +6,24 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.yourdevices.R;
 import com.example.yourdevices.admin.AdminAddProducts;
+import com.facebook.login.Login;
 
 public class AdminPanel extends AppCompatActivity implements View.OnClickListener {
     private CardView supermarket, clothes, games, phones, kitchen, health, cleaners, electerical;
     private Intent i;
     private String productCat = "111";
+    Button adminSignOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_panel);
 
+        adminSignOut = findViewById(R.id.adminSignOut);
         supermarket = findViewById(R.id.add_supermarket);
         supermarket.setOnClickListener(this);
         clothes = findViewById(R.id.add_clothes);
@@ -38,7 +42,14 @@ public class AdminPanel extends AppCompatActivity implements View.OnClickListene
         electerical.setOnClickListener(this);
 
         i = new Intent(this, AdminAddProducts.class);
-
+        adminSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
