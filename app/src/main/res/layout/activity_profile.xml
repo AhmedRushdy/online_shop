@@ -74,28 +74,7 @@
         android:layout_marginTop="20dp"
         android:id="@+id/cv_settings"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/liked"
-            android:textSize="20sp"
-            android:textColor="@android:color/holo_blue_dark"
-            android:drawableEnd="@drawable/ic_favorite"
-            android:gravity="center"
-            android:paddingEnd="10dp"
-            android:layout_marginBottom="5dp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#A3A5A8"
-                android:layout_marginVertical="5dp"
-                android:layout_marginHorizontal="70dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,7 +85,6 @@
                 android:gravity="center"
                 android:paddingEnd="10dp"
                 android:layout_marginBottom="5dp" />
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

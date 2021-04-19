@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <color name="ic_choose_product_image_background">#00B0F0</color>
+</resources>

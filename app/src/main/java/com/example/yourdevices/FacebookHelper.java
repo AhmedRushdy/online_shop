@@ -30,107 +30,110 @@ import java.util.Arrays;
 */
 
 public class FacebookHelper {
-        private LoginButton loginButton;
-        private Context context;
-        private CallbackManager callbackManager;
-        Users users;
+    private LoginButton loginButton;
+    private Context context;
+    private CallbackManager callbackManager;
+    Users users;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();    // ...
-    //    // Initialize Firebase Auth
-        public FacebookHelper(LoginButton loginButton, Context context) {
-            this.loginButton = loginButton;
-            this.context = context;
-        }
 
-        public void facebookLogin() {
+    // Initialize Firebase Auth
+    public FacebookHelper(LoginButton loginButton, Context context) {
+        this.loginButton = loginButton;
+        this.context = context;
+    }
 
-            callbackManager = CallbackManager.Factory.create();
-            loginButton.setPermissions(Arrays.asList("email", "public_profile"));
-            loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+    public void facebookLogin() {
 
-                @Override
-                public void onSuccess(LoginResult loginResult) {
-                    Toast.makeText(context, "Login successfull", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(context, MainActivity.class);
-                    context.startActivity(i);
-                }
+        callbackManager = CallbackManager.Factory.create();
+        loginButton.setPermissions(Arrays.asList("email", "public_profile"));
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
-                @Override
-                public void onCancel() {
-                    Toast.makeText(context, "cancel", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onError(FacebookException error) {
-                    Toast.makeText(context, "error log", Toast.LENGTH_SHORT).show();
-                }
-
-
-            });
-
-        }
-
-        public void onActivityResultFB(int requestCode, int resultCode, Intent data) {
-            callbackManager.onActivityResult(requestCode, resultCode, data);
-
-        }
-
-        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
             @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                if (currentAccessToken == null) {
-
-                    Toast.makeText(context, "User Logged out", Toast.LENGTH_LONG).show();
-                } else
-
-                    loadUserProfile(currentAccessToken);
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(context, "Login successfull", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(context, MainActivity.class);
+                context.startActivity(i);
             }
-        };
 
-        private void loadUserProfile(AccessToken newAccessToken) {
-            GraphRequest request = GraphRequest.newMeRequest(newAccessToken, new GraphRequest.GraphJSONObjectCallback() {
-                @Override
-                public void onCompleted(JSONObject object, GraphResponse response) {
-                    try {
+            @Override
+            public void onCancel() {
+                Toast.makeText(context, "cancel", Toast.LENGTH_SHORT).show();
+            }
 
-                        String first_name = object.getString("first_name");
-                        String last_name = object.getString("last_name");
-                        String email = object.getString("email");
-                        String id = object.getString("id");
-                        String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
-                        users = new Users(id,first_name+" " +last_name,email,image_url);
-                        addUser(users);
-                        updateUIByEmail(users);
-                        Log.d("Name", first_name + " " + last_name);
-                        Log.d("email", email);
-                        Log.d("image", image_url);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Toast.makeText(context, "exception", Toast.LENGTH_SHORT).show();
-                        Log.d("Error_fb", "fb" + e.getMessage());
-                    }
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(context, "error log", Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+
+    }
+
+    public void onActivityResultFB(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+    }
+
+    AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+        @Override
+        protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+            if (currentAccessToken == null) {
+
+                Toast.makeText(context, "User Logged out", Toast.LENGTH_LONG).show();
+            } else
+
+                loadUserProfile(currentAccessToken);
+        }
+    };
+
+    private void loadUserProfile(AccessToken newAccessToken) {
+        GraphRequest request = GraphRequest.newMeRequest(newAccessToken, new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                try {
+
+                    String first_name = object.getString("first_name");
+                    String last_name = object.getString("last_name");
+                    String email = object.getString("email");
+                    String id = object.getString("id");
+                    String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
+                    users = new Users(id, first_name + " " + last_name, email, image_url);
+                    addUser(users);
+                    updateUIByEmail(users);
+                    Log.d("Name", first_name + " " + last_name);
+                    Log.d("email", email);
+                    Log.d("image", image_url);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, "exception", Toast.LENGTH_SHORT).show();
+                    Log.d("Error_fb", "fb" + e.getMessage());
                 }
-            });
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "first_name,last_name,email,id");
-            request.setParameters(parameters);
-            request.executeAsync();
-        }
-
-        public void checkLoginStatus() {
-
-            if (AccessToken.getCurrentAccessToken() != null) {
-                loadUserProfile(AccessToken.getCurrentAccessToken());
             }
+        });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "first_name,last_name,email,id");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
+    public void checkLoginStatus() {
+
+        if (AccessToken.getCurrentAccessToken() != null) {
+            loadUserProfile(AccessToken.getCurrentAccessToken());
         }
+    }
+
     private void updateUIByEmail(Users users) {
 
         Intent i = new Intent(context, MainActivity.class);
         String name = users.getName();
         String email = users.getEmail();
-        i.putExtra("name",name);
-        i.putExtra("email",email);
+        i.putExtra("name", name);
+        i.putExtra("email", email);
         context.startActivity(i);
     }
+
     private void addUser(Users users) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String key = FirebaseDatabase.getInstance().getReference().push().getKey();
@@ -139,4 +142,4 @@ public class FacebookHelper {
         myRef.setValue(users);
 
     }
-   }
+}

@@ -30,7 +30,7 @@ public class Profile extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Picasso.get().load(user.getPhotoUrl()).into(iv);
         name.setText(user.getDisplayName());
-        email.setText(user.getDisplayName());
+        email.setText(user.getEmail());
 
         if (user != null) {
             log_out.setOnClickListener(new View.OnClickListener() {

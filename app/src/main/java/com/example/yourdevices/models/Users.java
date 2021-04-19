@@ -12,6 +12,12 @@ public class Users {
         this.avatar = avatar;
     }
 
+    public Users(String name, String email, String avatar) {
+        this.name = name;
+        this.email = email;
+        this.avatar = avatar;
+    }
+
     private String phone;
     private String address;
     private String avatar;

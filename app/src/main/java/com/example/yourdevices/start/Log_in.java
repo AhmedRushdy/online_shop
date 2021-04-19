@@ -96,7 +96,6 @@ public class Log_in extends AppCompatActivity {
         emailSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (emailSignIn.getText() == "Login as an Admin") {
                     logInAsAdmin(email.getText().toString(), password.getText().toString());
                 } else if (emailSignIn.getText().toString() == "LOG IN")
@@ -152,11 +151,7 @@ public class Log_in extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                            intent.putExtra("name",user.getDisplayName());
-                            intent.putExtra("img",user.getPhotoUrl());
-                            intent.putExtra("email",user.getEmail());
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                             Toast.makeText(Log_in.this, "loging in ", Toast.LENGTH_SHORT).show();

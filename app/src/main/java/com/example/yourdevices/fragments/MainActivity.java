@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yourdevices.models.Users;
 import com.example.yourdevices.ui.CartActivity;
 import com.example.yourdevices.ui.Profile;
 import com.example.yourdevices.R;
@@ -40,15 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     ImageView view;
-    TextView tv_name , tv_email;
+    TextView tv_name, tv_email;
     FirebaseAuth mAuth;
     Intent i;
     private GoogleSignInClient mGoogleSignInClient;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -88,27 +91,27 @@ public class MainActivity extends AppCompatActivity {
         View vheader = navigationView.getHeaderView(0);
 
         view = vheader.findViewById(R.id.user_img);
-        tv_name=vheader.findViewById(R.id.user_name);
-        tv_email =vheader.findViewById(R.id.user_email);
-                try {
-            tv_name.setText(i.getStringExtra("name"));
-            tv_email.setText(i.getStringExtra("email"));
-            if (i.getStringExtra("photo").isEmpty())
-                view.setImageResource(default_img);
-            Picasso.get().load(i.getStringExtra("photo")).into(view);
-        }catch (Exception e){
-            e.getStackTrace();
-        }
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "image clicked", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(MainActivity.this, Profile.class);
-                startActivity(i);
-            }
-        });
+        tv_name = vheader.findViewById(R.id.user_name);
+        tv_email = vheader.findViewById(R.id.user_email);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        Picasso.get().load(user.getPhotoUrl()).into(view);
+        tv_name.setText(user.getDisplayName());
+        tv_email.setText(user.getEmail());
+
+
+        view.setOnClickListener(new View.OnClickListener()
+
+    {
+        @Override
+        public void onClick (View v){
+        Toast.makeText(MainActivity.this, "image clicked", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(MainActivity.this, Profile.class);
+        startActivity(i);
     }
+    });
+
+}
 
 
     @Override
@@ -124,8 +127,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
 
 
     @Override
@@ -145,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    void googleSignOut(){
+
+    void googleSignOut() {
         mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
                 new OnCompleteListener<Void>() {
                     @Override
@@ -153,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "google revoked", Toast.LENGTH_SHORT).show();
                     }
                 });
-        }
+    }
+
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -174,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
